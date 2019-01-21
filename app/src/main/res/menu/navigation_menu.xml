@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_FrontPage"
+        android:icon="@mipmap/round_home_black_18dp"
+        android:title="Front Page" />
+
+    <item android:id="@+id/nav_Questionaire"
+        android:icon="@mipmap/round_home_black_18dp"
+        android:title="Questionaire" />
+
+    <item android:id="@+id/nav_Page3"
+        android:icon="@mipmap/round_home_black_18dp"
+        android:title="Third Page" />
+
+    <item android:id="@+id/nav_Page4"
+        android:icon="@mipmap/round_home_black_18dp"
+        android:title="Fifth Page" />
+
+</menu>
