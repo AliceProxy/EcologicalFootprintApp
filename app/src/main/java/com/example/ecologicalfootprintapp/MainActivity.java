@@ -59,6 +59,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new FragmentReduceImpact(), "FragmentImpact");
         adapter.addFragment(new FragmentCorvallisResources(), "FragmentCorvallis");
         adapter.addFragment(new FragmentAbout(), "FragmentAbout");
+        adapter.addFragment(new FragmentQuestionaire1(), "FragmentQ1");
+        adapter.addFragment(new FragmentQuestionaire2(), "FragmentQ2");
+        adapter.addFragment(new FragmentQuestionaire3(), "FragmentQ3");
+        adapter.addFragment(new FragmentQuestionaire4(), "FragmentQ4");
+        adapter.addFragment(new FragmentQuestionaire5(), "FragmentQ5");
 ;
 
         // copy and repeat this line for all fragments, first fragment will be loaded at start
@@ -112,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this,"Clicked Reduce Impact", Toast.LENGTH_SHORT).show();
             mViewPager.setCurrentItem(3);
             navDrawer.closeDrawers();
+
 
         }
         if(id == R.id.corvallisResources)

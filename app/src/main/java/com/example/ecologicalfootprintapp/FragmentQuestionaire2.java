@@ -10,25 +10,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class FragmentHome extends Fragment {
-    private static final String TAG = "FragmentHome";
+public class FragmentQuestionaire2 extends Fragment {
+    private static final String TAG = "FragmentQ2";
 
-    private Button startQuest;
+    private Button backButton, nextButton;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_home_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_q2_layout, container, false);
         Log.d(TAG, "onCreateView: started.");
 
-        startQuest = (Button) view.findViewById(R.id.startSurvey);
+        backButton = (Button) view.findViewById(R.id.prev1);
+        nextButton = (Button) view.findViewById(R.id.next2);
 
-        startQuest.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).setViewPager(6);
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).setViewPager(8);
             }
         });
 

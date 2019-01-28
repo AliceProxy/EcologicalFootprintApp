@@ -10,11 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class FragmentHome extends Fragment {
+public class FragmentQuestionaire1 extends Fragment {
     private static final String TAG = "FragmentHome";
 
-    private Button startQuest;
-
+    private Button backButton, nextButton;
 
     @Nullable
     @Override
@@ -22,13 +21,22 @@ public class FragmentHome extends Fragment {
     {
         View view = inflater.inflate(R.layout.fragment_home_layout, container, false);
         Log.d(TAG, "onCreateView: started.");
+        backButton = (Button) view.findViewById(R.id.back1); //use this syntax for functions in the main layout
+        nextButton = (Button) view.findViewById(R.id.next1);
 
-        startQuest = (Button) view.findViewById(R.id.startSurvey);
-
-        startQuest.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                ((MainActivity)getActivity()).setViewPager(6);
+            public void onClick(View v)
+            {
+                ((MainActivity)getActivity()).setViewPager(0); // go to home screen
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                ((MainActivity)getActivity()).setViewPager(7); // go to Q1
             }
         });
 
