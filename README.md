@@ -1,0 +1,2 @@
+# EcologicalFootprintApp
+Ecological Footprint App
