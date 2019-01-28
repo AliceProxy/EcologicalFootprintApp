@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Home">
+    </item>
 
-    <item android:id="@+id/nav_FrontPage"
-        android:icon="@mipmap/round_home_black_18dp"
-        android:title="Front Page" />
+    <item
+        android:id="@+id/scoreBreakdown"
+        android:title="Score Breakdown">
+    </item>
 
-    <item android:id="@+id/nav_Questionaire"
-        android:icon="@mipmap/round_home_black_18dp"
-        android:title="Questionaire" />
+    <item
+        android:id="@+id/scoreTracking"
+        android:title="Score Tracking">
+    </item>
 
-    <item android:id="@+id/nav_Page3"
-        android:icon="@mipmap/round_home_black_18dp"
-        android:title="Third Page" />
+    <item
+        android:id="@+id/reduceImpact"
+        android:title="Reduce Your Impact">
+    </item>
 
-    <item android:id="@+id/nav_Page4"
-        android:icon="@mipmap/round_home_black_18dp"
-        android:title="Fifth Page" />
+    <item
+        android:id="@+id/corvallisResources"
+        android:title="Corvallis Resources">
+    </item>
+
+    <item
+        android:id="@+id/about"
+        android:title="About">
+    </item>
+
 
 </menu>
