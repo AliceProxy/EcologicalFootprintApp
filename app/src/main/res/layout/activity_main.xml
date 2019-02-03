@@ -29,6 +29,7 @@
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"
         android:background="@color/colorPrimary"
+        app:itemTextColor="@color/textLight"
         android:layout_gravity="start">
     </android.support.design.widget.NavigationView>
 

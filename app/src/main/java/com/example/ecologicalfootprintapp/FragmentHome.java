@@ -9,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class FragmentHome extends Fragment {
     private static final String TAG = "FragmentHome";
 
     private Button startQuest;
+
 
 
     @Nullable
@@ -24,14 +26,16 @@ public class FragmentHome extends Fragment {
         Log.d(TAG, "onCreateView: started.");
 
         startQuest = (Button) view.findViewById(R.id.startSurvey);
-
         startQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).setViewPager(6);
+                Toast.makeText(getActivity(),"Clicked startButton", Toast.LENGTH_SHORT).show();
             }
         });
-
+        // start activity from fragment
+        // Intent intent = new Intent(getActivity(), secondActivity.class);
+        // startActivity(intent);
         return view;
     }
 }

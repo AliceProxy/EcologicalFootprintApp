@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private SectionsStatePagerAdapter mSectionsStatePagerAdapter;
     private ViewPager mViewPager;
+
+    public Questionaire questionaire;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,18 +45,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navDrawer = (DrawerLayout) findViewById(R.id.navDrawerLayout);
         navToggle = new ActionBarDrawerToggle(this, navDrawer, R.string.open, R.string.close);
         navDrawer.addDrawerListener(navToggle);
-        navDrawer.setBackgroundColor(Color.parseColor("#008577"));
+        navDrawer.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         navToggle.syncState();
         actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00574B")));
+        actionBar.setBackgroundDrawable(new ColorDrawable(this.getResources().getColor(R.color.colorPrimaryDark)));
         actionBar.setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //setting up questionaire variable
+        //questionaire = new Questionaire();
+
+        //checking if the questionaire has already been completed
+        //questionaire.readFromJSON();
+
     }
 
     private void setupViewPager(ViewPager viewPager)
     {
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
+
         adapter.addFragment(new FragmentHome(), "FragmentHome");
         adapter.addFragment(new FragmentScoreBreakdown(), "FragmentBreakdown");
         adapter.addFragment(new FragmentScoreTracking(), "FragmentTracking");
@@ -64,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new FragmentQuestionaire3(), "FragmentQ3");
         adapter.addFragment(new FragmentQuestionaire4(), "FragmentQ4");
         adapter.addFragment(new FragmentQuestionaire5(), "FragmentQ5");
+        adapter.addFragment(new FragmentQuestionRes(), "FragmentRes");
+
 ;
 
         // copy and repeat this line for all fragments, first fragment will be loaded at start
@@ -71,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    // sets the current fragment within the view pager
     public void setViewPager(int fragmentNumber)
     {
         mViewPager.setCurrentItem(fragmentNumber);
@@ -84,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+    //handles what happens when a navigation item is pressed
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
@@ -136,5 +152,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return false;
+    }
+
+
+    public void readJson(View view)
+    {
+        String jsonString = JsonManager.stringFromAsset(this, "Questions.json");
+        try
+        {
+            String result = "";
+            //JSONObject questionJsonObj = questionaire.get
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    public void writeJson(View view)
+    {
+        JsonManager.writeToFile(this, "QuestionsJsonObj.txt", questionaire.toJSONstring());
     }
 }
