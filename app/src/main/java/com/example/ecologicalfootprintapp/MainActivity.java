@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ViewPager mViewPager;
 
     public Questionaire questionaire;
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,10 +57,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         //setting up questionaire variable
-        //questionaire = new Questionaire();
+        Log.d(TAG, "questionaire completed");
+        questionaire = new Questionaire(this);
+        Log.d(TAG, "questionaire completed: "+(questionaire.getCompleted()+""));
+        Log.d(TAG, "questionaire completed");
 
-        //checking if the questionaire has already been completed
-        //questionaire.readFromJSON();
+
+
 
     }
 
@@ -154,23 +160,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-
-    public void readJson(View view)
-    {
-        String jsonString = JsonManager.stringFromAsset(this, "Questions.json");
-        try
-        {
-            String result = "";
-            //JSONObject questionJsonObj = questionaire.get
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-    }
-
-    public void writeJson(View view)
-    {
-        JsonManager.writeToFile(this, "QuestionsJsonObj.txt", questionaire.toJSONstring());
-    }
 }

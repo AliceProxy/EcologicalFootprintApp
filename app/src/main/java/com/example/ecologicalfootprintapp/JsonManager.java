@@ -3,8 +3,10 @@ package com.example.ecologicalfootprintapp;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.View;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,46 +17,98 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import com.example.ecologicalfootprintapp.Questionaire;
+
 public class JsonManager
 {
+    private AssetManager manager;
 
-    public static void writeToFile(File file, String str) throws IOException
+    // creating a class that will hold functions for editing JSON from anywhere in the App
+    public JsonManager(Context activityContext)
     {
-        FileOutputStream outputStream = new FileOutputStream(file);
-        outputStream.write(str.getBytes());
-        outputStream.close();
+        // manager can be used in any function added to this class in place of the context getActivity()
+        manager = activityContext.getAssets();
     }
 
-    public static void writeToFile(Context context, String fileName, String str)
+    // takes a filename and a string of the value in the json file
+    public String getJson(String filename, String key)
     {
         try
         {
-            FileOutputStream outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-            outputStream.write(str.getBytes(), 0, str.length());
-            outputStream.close();
+            JSONObject jsonObj = JArrayFromFile(filename, manager).getJSONObject(0);
+            return jsonObj.getString(key);
         }
-        catch (IOException ex)
+        catch (JSONException e)
         {
-            ex.printStackTrace();
+            e.printStackTrace();
+            Log.d("in get json","asd");
         }
+        return "";
     }
 
-    public static String stringFromAsset(Context context, String assetFileName)
+    public void setJson(String filename, String key, String value)
     {
-        AssetManager assetManager = context.getAssets();
+
+        JSONObject jsonObj = null;
         try
         {
-            InputStream inputStream = assetManager.open(assetFileName);
-            //String result = JsonManager.stringFromStream(inputStream);
-            inputStream.close();
-            //return result;
+            jsonObj = JArrayFromFile(filename, manager).getJSONObject(0);
         }
-        catch(Exception ex)
+        catch (JSONException e)
         {
-            ex.printStackTrace();
+            e.printStackTrace();
         }
-        return null;
+        // updating the JSON
+        try
+        {
+            // write the value
+            jsonObj.put(key, value);
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
+
+    // takes a filename as a string and returns a JSONArray of its contents
+    public static JSONArray JArrayFromFile(String filename, AssetManager mn)
+    {
+        String json;
+
+        try
+        {
+            InputStream inStream = mn.open(filename);
+            int streamSize = inStream.available();
+            // buffer to receive json data
+            byte[] buffer = new byte[streamSize];
+
+            // read the data into the buffer
+            inStream.read(buffer);
+            inStream.close();
+
+            // load the file contents into a string before parsing
+            json = new String(buffer, "UTF-8");
+
+            // getting the array of all the JSON objects in our file
+            return new JSONArray(json);
+
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            Log.d("jsonman","io error");
+            return null;
+
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+            Log.d("Jsonman", "jsonexception");
+            return null;
+
+        }
+    }
 
 }
