@@ -64,6 +64,7 @@ public class FragmentQuestionaire4 extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((MainActivity)getActivity()).questionaire.setQ4(answerSpinner.getSelectedItemPosition());
                 ((MainActivity)getActivity()).setViewPager(8);
             }
         });
@@ -71,10 +72,22 @@ public class FragmentQuestionaire4 extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((MainActivity)getActivity()).questionaire.setQ4(answerSpinner.getSelectedItemPosition());
                 ((MainActivity)getActivity()).setViewPager(10);
             }
         });
 
+        // update the value in the spinner
+        resetSpinner();
+
         return view;
+    }
+
+    // helper class that changes the selected item if the question has already been completed
+    public void resetSpinner()
+    {
+        int spinnerAnswer = ((MainActivity)getActivity()).questionaire.getQ4();
+        Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
+        answerSpinner.setSelection(spinnerAnswer);
     }
 }

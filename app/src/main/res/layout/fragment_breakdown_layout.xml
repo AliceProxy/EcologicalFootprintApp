@@ -8,18 +8,22 @@
     android:background="@color/colorPrimary">
 
 
-    <TextView
-        android:id="@+id/textView"
+    <com.razerdp.widget.animatedpieview.AnimatedPieView
+        android:id="@+id/animatedPieView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Score Breakdown"
-        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="85dp" />
+        tools:ignore="MissingConstraints">
+
+    </com.razerdp.widget.animatedpieview.AnimatedPieView>
+
 
 
 </android.support.constraint.ConstraintLayout>

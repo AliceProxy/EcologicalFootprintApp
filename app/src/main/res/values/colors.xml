@@ -6,4 +6,8 @@
     <color name="colorLighter">#4C7938</color>
     <color name="textLight">#ffffff</color>
     <color name="colorAccent">#BF863B</color>
+    <color name="color1">#8d73a8</color>
+    <color name="color2">#689bff</color>
+    <color name="color3">#2deea2</color>
+    <color name="color4">#17c64a</color>
 </resources>

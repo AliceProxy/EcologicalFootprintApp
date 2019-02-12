@@ -41,6 +41,12 @@ public class FragmentQuestionRes extends Fragment {
         res4 = (TextView) view.findViewById(R.id.response4) ;
         res5 = (TextView) view.findViewById(R.id.response5) ;
 
+        res1.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ1());
+        res2.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ2());
+        res3.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ3());
+        res4.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ4());
+        res5.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ5());
+
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

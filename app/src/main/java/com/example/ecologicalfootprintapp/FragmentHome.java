@@ -27,22 +27,6 @@ public class FragmentHome extends Fragment
         Log.d(TAG, "onCreateView: started.");
 
 
-        // get the value from the questionaire class to see if the questionaire has been completed or not
-        // changes the text to reflect to let the user know
-        completedText = view.findViewById(R.id.completedText);
-
-        if(((MainActivity)getActivity()).questionaire.getCompleted()) // using this method to access the questionaire object on the main activity
-        {
-            Log.d("asd","asd");
-            completedText.setText("You have completed the questionaire");
-        }
-        else
-        {
-            Log.d("asd","asd");
-           completedText.setText("You have not completed the questionaire yet, please press the button below to begin");
-        }
-
-
         // setting up onclick listener
         startQuest = (Button) view.findViewById(R.id.startSurvey);
         startQuest.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +36,28 @@ public class FragmentHome extends Fragment
                 Toast.makeText(getActivity(),"Clicked startButton", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // get the value from the questionaire class to see if the questionaire has been completed or not
+        // changes the text to reflect to let the user know
+        completedText = view.findViewById(R.id.completedText);
+
+        ((MainActivity)getActivity()).questionaire.setQ1(3);
+
+        if(((MainActivity)getActivity()).questionaire.getCompleted()) // using this method to access the questionaire object on the main activity
+        {
+            Log.d("asd","asd");
+            completedText.setText("You have completed the questionaire");
+            startQuest.setText("Re-Take Survey");
+        }
+        else
+        {
+            Log.d("asd","asd");
+           completedText.setText("You have not completed the questionaire yet, please press the button below to begin");
+            startQuest.setText("Take The Survey");
+        }
+
+
+
         // start activity from fragment
         // Intent intent = new Intent(getActivity(), secondActivity.class);
         // startActivity(intent);

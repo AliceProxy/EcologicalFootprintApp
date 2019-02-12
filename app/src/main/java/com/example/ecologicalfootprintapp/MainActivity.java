@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //setting up questionaire variable
         Log.d(TAG, "questionaire completed");
         questionaire = new Questionaire(this);
+
+
+
         Log.d(TAG, "questionaire completed: "+(questionaire.getCompleted()+""));
         Log.d(TAG, "questionaire completed");
 

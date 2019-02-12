@@ -46,9 +46,11 @@ public class FragmentQuestionaire1 extends Fragment {
 
         answerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 String itemvalue = parent.getItemAtPosition(position).toString();
                 Toast.makeText(getActivity(), "Selected: "+itemvalue, Toast.LENGTH_SHORT).show();
+
 
             }
 
@@ -65,6 +67,7 @@ public class FragmentQuestionaire1 extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"Clicked previousButton", Toast.LENGTH_SHORT).show();
+                ((MainActivity)getActivity()).questionaire.setQ1(answerSpinner.getSelectedItemPosition());
                 ((MainActivity)getActivity()).setViewPager(0);
                 //navigate to Fragment
             }
@@ -74,14 +77,24 @@ public class FragmentQuestionaire1 extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"Clicked nextButton", Toast.LENGTH_SHORT).show();
+                ((MainActivity)getActivity()).questionaire.setQ1(answerSpinner.getSelectedItemPosition());
                 ((MainActivity)getActivity()).setViewPager(7);
 
             }
         });
 
-
+        // update the value in the spinner
+        resetSpinner();
 
         return view;
+    }
+
+    // helper class that changes the selected item if the question has already been completed
+    public void resetSpinner()
+    {
+        int spinnerAnswer = ((MainActivity)getActivity()).questionaire.getQ1();
+        Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
+        answerSpinner.setSelection(spinnerAnswer);
     }
 
 
