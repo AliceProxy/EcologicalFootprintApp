@@ -1,0 +1,152 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc, tikz]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{pgfgantt}
+\usepackage{listings}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+\def \CapstoneTeamName{		Ecological Footprint Team}
+\def \CapstoneTeamNumber{		77}
+\def \GroupMemberOne{			Rohan Barve}
+\def \GroupMemberTwo{			Sathya Ramanathan}
+\def \GroupMemberThree{			Dominic Wasko}
+\def \CapstoneProjectName{		Ecological Footprint App}
+\def \CapstoneSponsorCompany{	Oregon State University Sustainability Double Degree}
+\def \CapstoneSponsorPerson{		Ann Scheerer}
+
+\def \DocType{Progress Update}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+\renewcommand{\NameSigPair}[1]{#1}
+
+
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+        \hfill 
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+	 \huge \DocType \par
+            \huge CS 461 Capstone - Fall Term \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        
+        \begin{abstract}
+
+        \end{abstract}  
+        
+        
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+\clearpage
+
+
+\section{Introduction}
+For our Senior Capstone project, we decided to work with the sustainability department here at Oregon State University to create a greener solution for communities. We have agreed with our client on the basis of creating an ecological footprint calculator. An ecological footprint is essentially a measurement of land area that is required to sustain a given population. Through this calculator, we can measure individually how much each person consumes the overall available land/water resources. In this document, we will be discussing our progress up to date; the various aspects we worked on throughout this term.
+
+
+\section{Purpose/Goals}
+The purpose of our project is to help communities become greener using our mobile application. By calculating their footprint, they will be able to get an idea of where they stand ecologically. One of our main goals for this application is to calculate the user's score given a specific set of criteria. We believe once we have this in place, we can move on to the front-end side of displaying the score to the user. From there, we aim to include features such local recommendations and Amazon Alexa voice integration. Once we have our main goals complete, we will then focus on improving other aspects of our app. However, this will be done near the end of development as time permits.
+
+
+\section{Where We Are Now}
+Currently we are working on familiarizing ourselves with the Android Studio integrated development environment. We are using the Android Studio documentation to learn how to code a basic android app. In particular we are learning how to connect to third party API's and gather the relevant data we will need in order to calculate the footprint score. In addition, we are also learning how to develop the user interface using Studio's different features and plan to continue reading the documentation and honing our skills in application development. We are also continuing our research on how to using a recommendation service within a mobile application so that we can develop localized recommendations specific to Corvallis community in order to help users lower their score and help improve the environment. 
+
+
+\section{Problems}
+Some of the problems we have been having through out the term include the lack of reliable data that can be used to calculate the footprint score. We do have 1 API through which we plan to request pieces of data that can be used to calculate the footprint score. The other issue is building in a recommendation service to the mobile application to offer users recommendations to lower their footprint scores.  
+
+
+\clearpage
+\section{Retrospective}
+\begin{table}[h!]
+\caption{Retrospective Table}
+\begin{center}
+\begin{tabular}{ | m{2cm} | m{4cm} | m{4cm}| m{4cm} | }
+    \hline Week \# & Positives & Deltas & Actions \\
+    %------------------------------------------------
+    \hline Week 1 
+    & N/A
+    & N/A 
+    & N/A\\
+    %------------------------------------------------
+    \hline Week 2 
+    & Learned about all of the projects available
+    & N/A
+    & Selected our desired projects\\
+    %------------------------------------------------
+    \hline Week 3 
+    & Met with group and client
+    & unable to meet with TA this week due to schedule conflict
+    & Planned new meeting time with TA\\
+    %------------------------------------------------
+    \hline Week 4 
+    & Found a website with an API we might be able to use
+    & Meeting with client to go over project
+    & Started collecting data on ecological footprints and researching how they are calculated\\
+    %------------------------------------------------
+    \hline Week 5 
+    & Individually researching how applications are made
+    & Decided on android studio for development environment
+    & Continue working on early design and documentation \\
+    %------------------------------------------------
+    \hline Week 6 
+    & Identified several interesting technologies to write about and research 
+    & User stories and use cases were created
+    & Begin learning how to use android studio \\
+    %------------------------------------------------
+    \hline Week 7 
+    & Group meeting to catch up and compare assignment progress
+    & No changes this week 
+    & Individual work on tech requirements \\
+    %------------------------------------------------
+    \hline Week 8 
+    & Continue learning how to use android studio
+    & Difficulty learning different screen sizes and anchor points in android studio. 
+    & Started rough draft of the design document and incorporating feedback from last assignment \\
+    %------------------------------------------------
+    \hline Week 9 
+    & All functional and design requirements understood and agreed upon. 
+    & Meeting with TA to set a schedule for next term
+    & Worked to complete design document \\
+    %------------------------------------------------
+    \hline Week 10 
+    & Ready to begin development after client approval
+    & Met with client, minor revisions to documents requested
+    & Finished work on presentation video\\
+    \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\end{document}

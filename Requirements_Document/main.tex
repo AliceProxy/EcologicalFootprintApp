@@ -1,0 +1,255 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc, tikz]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{pgfgantt}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+\def \CapstoneTeamName{		Ecological Footprint Team}
+\def \CapstoneTeamNumber{		77}
+\def \GroupMemberOne{			Rohan Barve}
+\def \GroupMemberTwo{			Sathya Ramanathan}
+\def \GroupMemberThree{			Dominic Wasko}
+\def \CapstoneProjectName{		Ecological Footprint App}
+\def \CapstoneSponsorCompany{	Oregon State University Sustainability Double Degree}
+\def \CapstoneSponsorPerson{		Ann Scheerer}
+
+\def \DocType{Requirements Document}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+\renewcommand{\NameSigPair}[1]{#1}
+
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+        \hfill 
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+	 \huge \DocType \par
+            \huge CS 461 Capstone - Fall Term \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        	For our Senior Capstone project, we decided to work with the sustainability department here at Oregon State University to create a greener solution for the community. 
+	We have agreed with our client on the basis of creating an ecological footprint calculator specifically for the city of Corvallis.
+	An ecological footprint is essentially a measurement of land area that is required to sustain a given population. 
+	Through this calculator, we can measure individually how much each person consumes the overall available land/water resources. 
+	We will be talking about the ecological problems we face today, the proposed solution, and our projects scope.
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+The purpose of this document is to layout the requirements of our mobile application and its properties. This will also serve as a guideline for this project including all the crucial information leading from the development to the presentation stage. 
+
+\subsection{Scope}
+This mobile application is intended to calculate the ecological footprint of people living in the United States. Additionally, this application will provide local recommendations and suggestions for users to improve their ecological footprint score.
+Recommendations will be provided by displaying or providing links to resources and information on how an individual can reduce their consumption of certain goods and services in order to lower their ecological footprint score. 
+Local recommendations and information will be provided before general information where it is applicable. 
+For example, if the application identifies that the user produces a large amount of garbage, the application would provide information on waste reduction showing local resources and programs when they are available.
+The application should be usable by any person who lives in the United States, however these local recommendations would only be shown to Corvallis users.
+
+\subsection{Context}
+After researching the technologies required for developing for Apple devices and Android devices, we have decided to develop only for Android devices.
+The software available for programming for both environments at the same time is significantly more difficult to use, and there is much less community support and documentation than for developing in Android Studio.
+For these reasons, we believe that developing only for android will enable us to create a more complete and feature full application in the time frame of this project, than if we had decided to learn development for both platforms at the same time.
+This decision also allows us to provide more consistency with the application by limiting the development area.
+The mobile application will be developed using Android Studio, implemented in Java.
+We will need to be able to store information on the users device locally when the application is installed.
+The primary statistics information we will gather stems from a third party ecological API - that can be found at www.footprintnetwork.org. % we should link the website for the API
+We can combine the data from the API along hand selected pieces of information and resources to present users with depending on questions that they answer. % how are we going to store info? harcode everything? sqlite?
+
+% check all definitions used before submitting
+\clearpage
+\subsection{Glossary}
+\begin{table}[h!]
+\caption{Glossary Table}
+\begin{center}
+\begin{tabular}{ | m{6em} | m{9cm}| }
+    \hline Term & Definition \\
+    \hline User Interface (UI) & Objects in the program that allow the user to interact with the application. Examples are pages, screens, images, buttons, etc. \\
+    \hline Application Program Interface (API) & Code that allows two software programs to communicate with each other. \\
+    \hline Bio capacity & The capacity of an area of land to produce renewable resources and to absorb waste. \\
+    \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\clearpage
+\section{Body}
+
+\subsection{Identified Stakeholders}
+This project request has been submitted by \CapstoneSponsorPerson. She is our sponsor and client for this project.
+Another stakeholder is the \CapstoneSponsorCompany, who the application is being produced for.
+The main requirement from the stakeholders is an application that can help local users determine their ecological footprint score and learn about ways to reduce it.
+The design of the application has been left for the developers to decide what will be most appropriate for the goal of the software.
+The main functional requirements from the stakeholders will be actions that the users should be able to perform within the software  represented as use cases and user stories.
+We can use these descriptions of actions the software should be able to perform to mark progress points and functional goal deadlines. 
+
+
+\subsection{Purpose}
+The main objective of this project is to increase public awareness of how many resources they are using, and what their affect on the environment is.
+In order to be effective at accomplishing its main objective, our application will have several goals that it must be able to do in order to have the highest chances of convincing users to willingly reduce their consumption of resources.
+Most importantly the application needs to allow users to find out what their ecological footprint score is.
+The user will need to enter data into the application by a series of questions to get their score.
+This score is whatever number or measurement we decide will best put into perspective the overall impact an individual has on the environment.
+The application will also need to let the user find out how their score compares to national averages to give people perspective.
+There should also be features that allow the user to see how each of their behaviors contributes to their score so they know what to do in order to improve their score.
+Finally, there should be information on helpful ways to reduce impact such as information on ride sharing or recycling.
+Through these features the application aims to bring awareness to human ecological impact, and convince users to try to reduce their impact.
+
+\subsection{Functional Requirements}
+The foremost functional requirement of the application is to calculate the user's ecological footprint based off their inputs. This will involve taking the user input tangibly through the user interface and applying it to the equations set up in the back-end. The next requirement is the user interface, which will give the user a friendly interface to use the application. The third requirement is to have local recommendations. This will suggest nearby services that will help the user lower their ecological footprint, such as a bus route or local produce. If time permits, the stretch goals include collecting user input through voice, particularly via Amazon Alexa; maintaining a database within the application to store user information.
+
+\clearpage
+
+\subsection{User Interface}
+We plan on implementing a simplistic user interface so that a given user can utilize the basic features of the application. The user interface will contain options to change settings and set user preferences. 
+
+\subsection{Constraints}
+For this mobile application we are constrained by the quality of data that we receive from a third party API in order to calculate the ecological footprint score. Some other constraints include limited development resources and lack of knowledge on how to implement a recommendation system inside of a mobile application. 
+
+\subsection{Use Cases}
+The following are descriptions of the possible different types of users and why they are using the application: \\
+\begin{itemize}
+  \item People who just want to learn about the environment. 
+  \item People who just discovered it in the application store and don't know about ecological footprints.
+  \item People who know what an ecological footprint is, and want to learn more.
+  \item People who want a tool to help them reduce their impact. \\
+\end{itemize} 
+
+
+These users will have different objectives with the software, and these are some cases where different types of users will want to be able to perform certain actions within the software. \\
+
+
+
+\textbf{Use Case 1:}
+The user that wants to learn about the environment opens the application. 
+From the home page, the user navigates to the menu.
+The user selects the information page. \\
+
+
+
+\textbf{Use Case 2:}
+The user has never used the application before and opens the main screen.
+The user will not have any information on the main screen since they have never used the application before.
+There should be a button to indicate to the user that they will need to take the questionnaire to view their score.
+The user uses the menu to navigate to the information page to find out more about the application before proceeding.
+The user returns to the main screen and takes the questionnaire.
+The user receives their score and is able to view it. \\
+
+
+
+\textbf{Use Case 3:}
+The user knows a lot about environmental protection and wants to try our application to learn about local programs.
+The user arrives on the main screen and proceeds to take the questionnaire.
+The user uses the menu to navigate to a page where they can view a breakdown of their score and how each behavior contributes to their consumption. \\
+
+
+
+\textbf{Use Case 4:}
+The user wants an application that will help them remember to reduce their impact and show them how.
+The user opens the application and arrives on the main screen.
+The user takes the questionnaire and receives their score.
+The user uses the menu to navigate to a page that lets them compare their score to national averages as a motivating tool.
+The user uses the menu to navigate to a page that lets them view resources and information on how to reduce their consumption. \\
+
+
+
+\subsection{User Stories}
+
+\begin{table}[h!]
+\caption{User Stories}
+\begin{center}
+\begin{tabular}{ | m{12em} | m{7cm} | m{2cm} |}
+    \hline Story Title & Story Description & Priority \\
+    \hline Main Screen (UI) & A user wants to be able to navigate to other pages within the application & High\\
+    \hline Menu (UI) & A user wants to to open a menu to view the pages they can visit & High \\
+    \hline Questionnaire(UI) & A user wants to be able to provide information about their lifestyle and habits by pressing buttons and selecting answers & High\\
+    \hline Information (UI) & A user wants to view a page containing information about what the application is & Med \\
+    \hline Questionnaire Save Data & A user that has already entered their information wants it to be remembered & Med\\
+    \hline Statistics Data & A user wants to get information about general population ranks & Med\\
+    \hline Statistics (UI) & A user wants to be able to view information in a neat and easy to understand page & Med\\
+    \hline Personalized Stats Data & A user wants to be able to get information about how they compare to the average & Low\\
+    \hline Personalized Stats (UI) & A user wants to view the personalized data in a easy to understand page & Low \\ 
+    \hline Feedback (UI) & A user wants to see a visual breakdown of their score and which factors contribute most & Low \\
+    \hline Resources (UI) & A user wants to view resources to help them reduce specific resource use & Low \\
+    \hline
+\end{tabular}
+\end{center}
+\end{table}
+\clearpage
+
+
+\begin{center}
+    
+
+\begin{figure}
+\begin{ganttchart}{1}{20}
+  \gantttitle{Ecological Footprint App}{20} \\
+  \gantttitlelist{1,...,10}{2} \\
+  
+  \ganttgroup{Rohan}{1}{7} \\
+  \ganttbar{Data Generation}{1}{2} \\
+  \ganttlinkedbar{Interaction Modes}{3}{7} \ganttnewline
+  \ganttmilestone{Milestone}{7} \ganttnewline
+  \ganttbar{UI Toolkit}{8}{12}
+  \ganttlink{elem2}{elem3}
+  \ganttlink{elem3}{elem4} \ganttnewline
+  
+  \ganttgroup{Sathya}{1}{7} \\
+  \ganttbar{Mapping Data}{1}{2} \\
+  \ganttlinkedbar{Displaying Data}{3}{7} \ganttnewline
+  \ganttbar{UI Interaction Methods}{8}{12}
+  \ganttlink{elem2}{elem3}
+  \ganttlink{elem3}{elem4} \ganttnewline
+  
+  \ganttgroup{Dominic}{1}{16} \\
+  \ganttbar{Data Storage}{1}{6} \\
+  \ganttlinkedbar{Data Processing}{6}{16} \ganttnewline
+  \ganttlinkedbar{UI Organization}{4}{16}
+
+  
+\end{ganttchart}
+    \caption{Gantt Chart}
+    \label{fig:my_label}
+\end{figure}
+\end{center}
+
+
+
+
+\end{document}
