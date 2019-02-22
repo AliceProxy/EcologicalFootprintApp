@@ -72,6 +72,7 @@ public class FragmentScoreTracking extends Fragment {
         trackingChart.setTouchEnabled(true);
         trackingChart.setDragEnabled(true);
 
+
         return view;
     }
 }

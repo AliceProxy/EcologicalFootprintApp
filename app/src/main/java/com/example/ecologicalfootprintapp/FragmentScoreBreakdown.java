@@ -35,8 +35,9 @@ public class FragmentScoreBreakdown extends Fragment {
         AnimatedPieView mAnimatedPieView = view.findViewById(R.id.animatedPieView);
         AnimatedPieViewConfig config = new AnimatedPieViewConfig();
         config.startAngle(-90)// angle offset
-                .addData(new SimplePieInfo(30, this.getResources().getColor(R.color.color1), "title 1"))
-                .addData(new SimplePieInfo(18.0f, this.getResources().getColor(R.color.color3), "title 2")).drawText(true)
+                .addData(new SimplePieInfo(30, this.getResources().getColor(R.color.color1), "Electricity"))
+                .addData(new SimplePieInfo(18.0f, this.getResources().getColor(R.color.color3), "Water")).drawText(true)
+                .addData(new SimplePieInfo(20.0f, this.getResources().getColor(R.color.colorAccent), "Agriculture")).drawText(true)
                 .duration(2000);// duration of the animation
 
         mAnimatedPieView.applyConfig(config);
