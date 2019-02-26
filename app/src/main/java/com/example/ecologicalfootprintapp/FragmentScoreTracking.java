@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -62,15 +64,59 @@ public class FragmentScoreTracking extends Fragment {
 
         LineDataSet lineDataSet = new LineDataSet(yAxis, "Values");
         lineDataSet.setDrawCircles(true);
-        lineDataSet.setColor(this.getResources().getColor(R.color.color1));
+        lineDataSet.setCircleRadius(3);
+        lineDataSet.setLineWidth(15);
+        lineDataSet.setValueTextColor(this.getResources().getColor(R.color.textLight));
+        lineDataSet.setValueTextSize(24);
+        lineDataSet.setColor(this.getResources().getColor(R.color.color3));
 
         lineDataSets.add(lineDataSet);
 
         trackingChart.setData(new LineData(stringArray, lineDataSets));
 
-        trackingChart.setVisibleXRangeMinimum(10f);
+        trackingChart.setVisibleXRange(6, 10);
         trackingChart.setTouchEnabled(true);
         trackingChart.setDragEnabled(true);
+        trackingChart.setGridBackgroundColor(this.getResources().getColor(R.color.color3));
+        trackingChart.setDescriptionColor(this.getResources().getColor(R.color.textLight));
+        trackingChart.setDescriptionTextSize(1);
+        trackingChart.setScaleEnabled(true);
+        trackingChart.setPinchZoom(true);
+
+        XAxis chartXAxis = trackingChart.getXAxis();
+        //chartXAxis.setLabelRotationAngle(15);
+        chartXAxis.setPosition(XAxis.XAxisPosition.TOP);
+        chartXAxis.setTextSize(18f);
+        chartXAxis.setTextColor(this.getResources().getColor(R.color.textLight));
+        chartXAxis.setDrawAxisLine(true);
+        chartXAxis.setDrawGridLines(true);
+        chartXAxis.setDrawLabels(true);
+        chartXAxis.setGridLineWidth(5);
+        chartXAxis.setAxisLineColor(this.getResources().getColor(R.color.color3));
+        chartXAxis.setAxisLineWidth(5);
+
+
+        YAxis chartYAxis = trackingChart.getAxisLeft();
+        chartYAxis.setDrawZeroLine(true);
+        chartYAxis.setTextSize(18f);
+        chartYAxis.setTextColor(this.getResources().getColor(R.color.textLight));
+        chartYAxis.setDrawAxisLine(true);
+        chartYAxis.setDrawGridLines(true);
+        chartYAxis.setDrawLabels(true);
+        chartYAxis.setGridLineWidth(5);
+        chartYAxis.setAxisLineColor(this.getResources().getColor(R.color.color3));
+        chartYAxis.setAxisLineWidth(5);
+
+        YAxis chartYAxis2 = trackingChart.getAxisRight();
+        chartYAxis2.setDrawZeroLine(false);
+        chartYAxis2.setTextColor(this.getResources().getColor(R.color.textLight));
+        chartYAxis2.setDrawAxisLine(true);
+        chartYAxis2.setDrawGridLines(true);
+        chartYAxis2.setDrawLabels(false);
+        chartYAxis2.setGridLineWidth(5);
+        chartYAxis2.setAxisLineColor(this.getResources().getColor(R.color.color3));
+        chartYAxis2.setAxisLineWidth(5);
+
 
 
         return view;

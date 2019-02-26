@@ -38,6 +38,9 @@ public class FragmentScoreBreakdown extends Fragment {
                 .addData(new SimplePieInfo(30, this.getResources().getColor(R.color.color1), "Electricity"))
                 .addData(new SimplePieInfo(18.0f, this.getResources().getColor(R.color.color3), "Water")).drawText(true)
                 .addData(new SimplePieInfo(20.0f, this.getResources().getColor(R.color.colorAccent), "Agriculture")).drawText(true)
+                .autoSize(true)
+                .strokeWidth(180)
+                .textSize(65)
                 .duration(2000);// duration of the animation
 
         mAnimatedPieView.applyConfig(config);
