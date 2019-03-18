@@ -39,8 +39,6 @@ public class GlobalFootprintAPI {
             public double mainTemp;
             public String mainWeather;
             public String display;
-            public double lat;
-            public double lon;
 
         }
 
@@ -73,4 +71,4 @@ public class GlobalFootprintAPI {
 
     }
 
-}
+
