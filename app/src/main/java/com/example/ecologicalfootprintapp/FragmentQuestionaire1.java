@@ -35,10 +35,11 @@ public class FragmentQuestionaire1 extends Fragment {
 
         List<String> spinnerOptions = new ArrayList<>();
         spinnerOptions.add("Select an option");
-        spinnerOptions.add("Option 1");
-        spinnerOptions.add("Option 2");
-        spinnerOptions.add("Option 3");
-        spinnerOptions.add("Option 4");
+        spinnerOptions.add("Never");
+        spinnerOptions.add("Not Frequently");
+        spinnerOptions.add("Occasionally");
+        spinnerOptions.add("Often");
+        spinnerOptions.add("Very Often");
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerOptions);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

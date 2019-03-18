@@ -33,23 +33,14 @@ public class JsonManager
     {
         // manager can be used in any function added to this class in place of the context getActivity()
         context = activityContext;
+        //validateFile("Questionaire.json", activityContext);
+        // uncomment the previous line to reset the stored contents of questionaire
     }
 
     // takes a filename and a string of the value in the json file
     public String getJson(String filename, String key) {
-        /*
-        try
-        {
-            JSONObject jsonObj = JArrayFromFile(filename, manager).getJSONObject(0);
-            return jsonObj.getString(key);
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-            Log.d("in get json","asd");
-        }
-        return "";
-        */
+
+        // getting a JSONArray for the contents of the specified file name
         JSONArray jArray = JArrayFromFile(filename, context);
         try
         {
@@ -67,35 +58,17 @@ public class JsonManager
         }
     }
 
+    // helper function that can set a single value within the JSON data, takes filename, the key to change, and the desired value
     public void setJson(String filename, String key, String value)
     {
-        /*
-        Log.d("in get json","SET JSON CALLED");
-        JSONObject jsonObj = null;
         try
         {
-            jsonObj = JArrayFromFile(filename, manager).getJSONObject(0);
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
-        // updating the JSON
-        try
-        {
-            // write the value
-            jsonObj.put(key, value);
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
-        */
-        try
-        {
+            // using helper function to get the JSONArray
             JSONArray jArray = JArrayFromFile(filename, context);
+            // this array is only one entry
             jArray.getJSONObject(0).put(key, value);
             String jsonString = jArray.toString();
+            // after modification, write to file to save
             OutputStreamWriter outStream = new OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
             outStream.write(jsonString);
             outStream.close();
@@ -105,14 +78,13 @@ public class JsonManager
             e.printStackTrace();
             Log.e("Exception", "File write failed: " + e.toString());
         }
-
-
     }
 
 
     // takes a filename as a string and returns a JSONArray of its contents
     public JSONArray JArrayFromFile(String filename, Context context)
     {
+        // string to be returned
         String ret = "";
         try
         {
@@ -120,38 +92,25 @@ public class JsonManager
 
             if(inStream != null)
             {
+                // read all contents into the string builder
                 InputStreamReader inReader = new InputStreamReader(inStream);
                 BufferedReader bufferedReader = new BufferedReader(inReader);
                 String outputString = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
                 while((outputString = bufferedReader.readLine()) != null)
-                {
                     stringBuilder.append(outputString);
-                }
 
                 inStream.close();
                 ret = stringBuilder.toString();
 
-                try
-                {
-                    return new JSONArray(ret);
-                }
-                catch (JSONException e1)
-                {
-                    e1.printStackTrace();
-                }
-
+                // attempt to create a JSONArray from the stringbuilder
+                try { return new JSONArray(ret); }
+                catch (JSONException e1) { e1.printStackTrace(); }
             }
         }
-        catch (FileNotFoundException e)
-        {
-            Log.e("login activity", "File not found: " + e.toString());
-        }
-        catch (IOException e)
-        {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        }
+        catch (FileNotFoundException e) { Log.e("login activity", "File not found: " + e.toString()); }
+        catch (IOException e) { Log.e("login activity", "Can not read file: " + e.toString()); }
 
         return null;
     }

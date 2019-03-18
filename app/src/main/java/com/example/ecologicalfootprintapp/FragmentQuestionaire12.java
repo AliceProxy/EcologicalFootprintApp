@@ -17,8 +17,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentQuestionaire4 extends Fragment {
-    private static final String TAG = "FragmentQ4";
+public class FragmentQuestionaire12 extends Fragment {
+    private static final String TAG = "FragmentQ12";
 
     private Button backButton, nextButton;
     private Spinner answerSpinner;
@@ -28,22 +28,32 @@ public class FragmentQuestionaire4 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_q4_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_q12_layout, container, false);
         Log.d(TAG, "onCreateView: started.");
 
-        backButton = (Button) view.findViewById(R.id.back4);
-        nextButton = (Button) view.findViewById(R.id.next4);
+        backButton = (Button) view.findViewById(R.id.back12);
+        nextButton = (Button) view.findViewById(R.id.next12);
 
         answerSpinner = (Spinner) view.findViewById(R.id.answerSpinner);
 
 
         List<String> spinnerOptions = new ArrayList<>();
         spinnerOptions.add("Select an option");
-        spinnerOptions.add("Straw / Bamboo");
-        spinnerOptions.add("Brick / Concrete");
-        spinnerOptions.add("Steel");
-        spinnerOptions.add("Wood");
-        spinnerOptions.add("Adobe");
+        spinnerOptions.add("10 miles / gallon");
+        spinnerOptions.add("20 miles / gallon");
+        spinnerOptions.add("30 miles / gallon");
+        spinnerOptions.add("40 miles / gallon");
+        spinnerOptions.add("50 miles / gallon");
+        spinnerOptions.add("60 miles / gallon");
+        spinnerOptions.add("70 miles / gallon");
+        spinnerOptions.add("80 miles / gallon");
+        spinnerOptions.add("90 miles / gallon");
+        spinnerOptions.add("100 miles / gallon");
+
+
+
+
+
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerOptions);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -53,7 +63,6 @@ public class FragmentQuestionaire4 extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String itemvalue = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getActivity(), "Selected: "+itemvalue, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -65,16 +74,18 @@ public class FragmentQuestionaire4 extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).questionaire.setQ4(answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(8);
+                ((MainActivity)getActivity()).questionaire.setQ12(answerSpinner.getSelectedItemPosition());
+                ((MainActivity)getActivity()).setViewPager(16);
+
             }
         });
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).questionaire.setQ4(answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(10);
+                ((MainActivity)getActivity()).questionaire.setQ12(answerSpinner.getSelectedItemPosition());
+                ((MainActivity)getActivity()).setViewPager(18);
+
             }
         });
 
@@ -87,7 +98,7 @@ public class FragmentQuestionaire4 extends Fragment {
     // helper class that changes the selected item if the question has already been completed
     public void resetSpinner()
     {
-        int spinnerAnswer = ((MainActivity)getActivity()).questionaire.getQ4();
+        int spinnerAnswer = ((MainActivity)getActivity()).questionaire.getQ12();
         Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
         answerSpinner.setSelection(spinnerAnswer);
     }
