@@ -1,8 +1,10 @@
 package com.example.ecologicalfootprintapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,9 +17,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
@@ -31,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ViewPager mViewPager;
 
     public Questionaire questionaire;
+
+    public ProgressDialog progressDiag;
+    public TextView resultText;
 
     private static final String TAG = "MainActivity";
 
@@ -65,11 +79,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.d(TAG, "questionaire completed: "+(questionaire.getCompleted()+""));
         Log.d(TAG, "questionaire completed");
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+        FetchAPI();
+>>>>>>> 7d971f45f8725bd4cbb9f24db65078d4f590f859
     }
 
 
@@ -88,13 +106,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new FragmentQuestionaire3(), "FragmentQ3");
         adapter.addFragment(new FragmentQuestionaire4(), "FragmentQ4");
         adapter.addFragment(new FragmentQuestionaire5(), "FragmentQ5");
+        adapter.addFragment(new FragmentQuestionaire6(), "FragmentQ6");
+        adapter.addFragment(new FragmentQuestionaire7(), "FragmentQ7");
+        adapter.addFragment(new FragmentQuestionaire8(), "FragmentQ8");
+        adapter.addFragment(new FragmentQuestionaire9(), "FragmentQ9");
+        adapter.addFragment(new FragmentQuestionaire10(), "FragmentQ10");
+        adapter.addFragment(new FragmentQuestionaire11(), "FragmentQ11");
+        adapter.addFragment(new FragmentQuestionaire12(), "FragmentQ12");
+        adapter.addFragment(new FragmentQuestionaire13(), "FragmentQ13");
+        adapter.addFragment(new FragmentQuestionaire14(), "FragmentQ14");
+        adapter.addFragment(new FragmentQuestionaire15(), "FragmentQ15");
         adapter.addFragment(new FragmentQuestionRes(), "FragmentRes");
-
-;
 
         // copy and repeat this line for all fragments, first fragment will be loaded at start
         viewPager.setAdapter(adapter);
-
     }
 
     // sets the current fragment within the view pager
@@ -113,7 +138,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //handles what happens when a navigation item is pressed
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)
+    {
         int id = menuItem.getItemId();
         Intent startNewActivity;
 
@@ -166,4 +192,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
+    public void FetchAPI()
+    {
+        resultText = new TextView(this);
+        progressDiag = new ProgressDialog(this);
+        new ApiJson(progressDiag, resultText).execute("http://api.footprintnetwork.org/v1/data/177/2014");
+    }
 }
+
+

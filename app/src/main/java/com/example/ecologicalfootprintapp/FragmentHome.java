@@ -41,26 +41,18 @@ public class FragmentHome extends Fragment
         // changes the text to reflect to let the user know
         completedText = view.findViewById(R.id.completedText);
 
-        ((MainActivity)getActivity()).questionaire.setQ1(3);
 
         if(((MainActivity)getActivity()).questionaire.getCompleted()) // using this method to access the questionaire object on the main activity
         {
-            Log.d("asd","asd");
             completedText.setText("You have completed the questionaire");
             startQuest.setText("Re-Take Survey");
         }
         else
         {
-            Log.d("asd","asd");
            completedText.setText("You have not completed the questionaire yet, please press the button below to begin");
             startQuest.setText("Take The Survey");
         }
 
-
-
-        // start activity from fragment
-        // Intent intent = new Intent(getActivity(), secondActivity.class);
-        // startActivity(intent);
         return view;
     }
 }

@@ -31,7 +31,7 @@ public class FragmentQuestionaire2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_q2_layout, container, false);
         Log.d(TAG, "onCreateView: started.");
 
-        backButton = (Button) view.findViewById(R.id.prev1);
+        backButton = (Button) view.findViewById(R.id.back2);
         nextButton = (Button) view.findViewById(R.id.next2);
 
         answerSpinner = (Spinner) view.findViewById(R.id.answerSpinner);
@@ -39,10 +39,17 @@ public class FragmentQuestionaire2 extends Fragment {
 
         List<String> spinnerOptions = new ArrayList<>();
         spinnerOptions.add("Select an option");
-        spinnerOptions.add("Option 1");
-        spinnerOptions.add("Option 2");
-        spinnerOptions.add("Option 3");
-        spinnerOptions.add("Option 4");
+        spinnerOptions.add("0%");
+        spinnerOptions.add("10%");
+        spinnerOptions.add("20%");
+        spinnerOptions.add("30%");
+        spinnerOptions.add("40%");
+        spinnerOptions.add("50%");
+        spinnerOptions.add("60%");
+        spinnerOptions.add("70%");
+        spinnerOptions.add("80%");
+        spinnerOptions.add("90%");
+        spinnerOptions.add("100%");
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerOptions);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

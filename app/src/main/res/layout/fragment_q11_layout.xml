@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Which housing type best describes your home?"
+        android:text="How far do you travel by motor vehicle each week?"
         android:textAlignment="center"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,9 +21,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.308" />
 
-
     <Button
-        android:id="@+id/back3"
+        android:id="@+id/back11"
         android:layout_width="149dp"
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
@@ -44,7 +43,7 @@
         android:background="@color/colorLighter"/>
 
     <Button
-        android:id="@+id/next3"
+        android:id="@+id/next11"
         android:layout_width="149dp"
         android:layout_height="70dp"
         android:layout_alignParentStart="true"

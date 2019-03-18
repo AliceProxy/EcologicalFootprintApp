@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class Questionaire
 {
-    public boolean completed;
+    public boolean completed, LinkedAPI;
     public Date lastCompleted;
     // Integers to represent the option number selected for the question, -1 if unselected
     public int question1, question2, question3, question4, question5;
@@ -33,6 +33,8 @@ public class Questionaire
 
     // returns the completed status boolean
     public boolean getCompleted() { return jManager.getJson("Questionaire.json","Completed").equals("true"); }
+
+    public boolean getAPI() { return jManager.getJson("Questionaire.json","ApiLinked").equals("true"); }
 
 
     // returns a date object created the last time the questionaire was updated, returns null if error
@@ -71,9 +73,40 @@ public class Questionaire
     // returns an integer symbolizing the option selected for question 5
     public int getQ5() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q5")); }
 
+    // returns an integer symbolizing the option selected for question 6
+    public int getQ6() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q6")); }
+
+    // returns an integer symbolizing the option selected for question 7
+    public int getQ7() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q7")); }
+
+    // returns an integer symbolizing the option selected for question 8
+    public int getQ8() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q8")); }
+
+    // returns an integer symbolizing the option selected for question 9
+    public int getQ9() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q9")); }
+
+    // returns an integer symbolizing the option selected for question 10
+    public int getQ10() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q10")); }
+
+    // returns an integer symbolizing the option selected for question 11
+    public int getQ11() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q11")); }
+
+    // returns an integer symbolizing the option selected for question 12
+    public int getQ12() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q12")); }
+
+    // returns an integer symbolizing the option selected for question 13
+    public int getQ13() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q13")); }
+
+    // returns an integer symbolizing the option selected for question 14
+    public int getQ14() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q14")); }
+
+    // returns an integer symbolizing the option selected for question 15
+    public int getQ15() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q15")); }
+
 
     public void setCompleted(boolean status) { jManager.setJson("Questionaire.json", "Completed", ""+status); }
 
+    public void setAPI(boolean status) { jManager.setJson("Questionaire.json", "ApiLinked", ""+status); }
 
     public void setLast() { jManager.setJson("Questionaire.json", "LastCompleted", Calendar.getInstance().getTime().toString()); }
 
@@ -91,6 +124,26 @@ public class Questionaire
 
 
     public void setQ5(int q5) { jManager.setJson("Questionaire.json", "Q5", (""+q5)); }
+
+    public void setQ6(int q6) { jManager.setJson("Questionaire.json", "Q6", (""+q6)); }
+
+    public void setQ7(int q7) { jManager.setJson("Questionaire.json", "Q7", (""+q7)); }
+
+    public void setQ8(int q8) { jManager.setJson("Questionaire.json", "Q8", (""+q8)); }
+
+    public void setQ9(int q9) { jManager.setJson("Questionaire.json", "Q9", (""+q9)); }
+
+    public void setQ10(int q10) { jManager.setJson("Questionaire.json", "Q10", (""+q10)); }
+
+    public void setQ11(int q11) { jManager.setJson("Questionaire.json", "Q11", (""+q11)); }
+
+    public void setQ12(int q12) { jManager.setJson("Questionaire.json", "Q12", (""+q12)); }
+
+    public void setQ13(int q13) { jManager.setJson("Questionaire.json", "Q13", (""+q13)); }
+
+    public void setQ14(int q14) { jManager.setJson("Questionaire.json", "Q14", (""+q14)); }
+
+    public void setQ15(int q15) { jManager.setJson("Questionaire.json", "Q15", (""+q15)); }
 
 
 }
