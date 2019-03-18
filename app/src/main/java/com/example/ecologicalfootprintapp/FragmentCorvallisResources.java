@@ -8,10 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class FragmentCorvallisResources extends Fragment {
     private static final String TAG = "FragmentCorvallis";
 
+    private Button WaterButton, RecyclingButton, EnergyButton, AgricultureButton;
 
     @Nullable
     @Override
@@ -19,6 +21,43 @@ public class FragmentCorvallisResources extends Fragment {
     {
         View view = inflater.inflate(R.layout.fragment_corvallis_layout, container, false);
         Log.d(TAG, "onCreateView: started.");
+
+        WaterButton = (Button) view.findViewById(R.id.WaterButton);
+        EnergyButton = (Button) view.findViewById(R.id.EnergyButton);
+        RecyclingButton = (Button) view.findViewById(R.id.RecyclingButton);
+        AgricultureButton = (Button) view.findViewById(R.id.AgricultureButton);
+
+        WaterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).setViewPager(22);
+
+            }
+        });
+
+        EnergyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).setViewPager(23);
+
+            }
+        });
+
+        RecyclingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).setViewPager(25);
+
+            }
+        });
+
+        AgricultureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).setViewPager(24);
+
+            }
+        });
 
         return view;
     }

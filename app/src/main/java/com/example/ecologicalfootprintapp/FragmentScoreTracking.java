@@ -25,8 +25,8 @@ public class FragmentScoreTracking extends Fragment {
     private static final String TAG = "FragmentTracking";
 
     public LineChart trackingChart; // line chart for tracking progress over time
-    public ArrayList<String> xAxis = new ArrayList<>();
-    public ArrayList<Entry> yAxis = new ArrayList<>(); // Entry from the chart repository
+    public ArrayList<String> xAxis = new ArrayList<>(); // tracks the labels for the graph
+    public ArrayList<Entry> yAxis = new ArrayList<>(); // values for the graph
     public ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
 
 
@@ -47,6 +47,7 @@ public class FragmentScoreTracking extends Fragment {
         xAxis.add("Saturday");
         xAxis.add("Sunday");
 
+        // will need to be re-worked after score is calculated
         yAxis.add(new Entry(10, 0));
         yAxis.add(new Entry(9, 1));
         yAxis.add(new Entry(8, 2));

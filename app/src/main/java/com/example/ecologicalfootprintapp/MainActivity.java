@@ -86,28 +86,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     {
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new FragmentHome(), "FragmentHome");
-        adapter.addFragment(new FragmentScoreBreakdown(), "FragmentBreakdown");
-        adapter.addFragment(new FragmentScoreTracking(), "FragmentTracking");
-        adapter.addFragment(new FragmentReduceImpact(), "FragmentImpact");
-        adapter.addFragment(new FragmentCorvallisResources(), "FragmentCorvallis");
-        adapter.addFragment(new FragmentAbout(), "FragmentAbout");
-        adapter.addFragment(new FragmentQuestionaire1(), "FragmentQ1");
-        adapter.addFragment(new FragmentQuestionaire2(), "FragmentQ2");
-        adapter.addFragment(new FragmentQuestionaire3(), "FragmentQ3");
-        adapter.addFragment(new FragmentQuestionaire4(), "FragmentQ4");
-        adapter.addFragment(new FragmentQuestionaire5(), "FragmentQ5");
-        adapter.addFragment(new FragmentQuestionaire6(), "FragmentQ6");
-        adapter.addFragment(new FragmentQuestionaire7(), "FragmentQ7");
-        adapter.addFragment(new FragmentQuestionaire8(), "FragmentQ8");
-        adapter.addFragment(new FragmentQuestionaire9(), "FragmentQ9");
-        adapter.addFragment(new FragmentQuestionaire10(), "FragmentQ10");
-        adapter.addFragment(new FragmentQuestionaire11(), "FragmentQ11");
-        adapter.addFragment(new FragmentQuestionaire12(), "FragmentQ12");
-        adapter.addFragment(new FragmentQuestionaire13(), "FragmentQ13");
-        adapter.addFragment(new FragmentQuestionaire14(), "FragmentQ14");
-        adapter.addFragment(new FragmentQuestionaire15(), "FragmentQ15");
-        adapter.addFragment(new FragmentQuestionRes(), "FragmentRes");
+        adapter.addFragment(new FragmentHome(), "FragmentHome"); // 0
+        adapter.addFragment(new FragmentScoreBreakdown(), "FragmentBreakdown"); // 1
+        adapter.addFragment(new FragmentScoreTracking(), "FragmentTracking"); // 2
+        adapter.addFragment(new FragmentReduceImpact(), "FragmentImpact"); // 3
+        adapter.addFragment(new FragmentCorvallisResources(), "FragmentCorvallis"); // 4
+        adapter.addFragment(new FragmentAbout(), "FragmentAbout"); // 5
+        adapter.addFragment(new FragmentQuestionaire1(), "FragmentQ1"); // 6
+        adapter.addFragment(new FragmentQuestionaire2(), "FragmentQ2"); // 7
+        adapter.addFragment(new FragmentQuestionaire3(), "FragmentQ3"); // 8
+        adapter.addFragment(new FragmentQuestionaire4(), "FragmentQ4"); // 9
+        adapter.addFragment(new FragmentQuestionaire5(), "FragmentQ5"); // 10
+        adapter.addFragment(new FragmentQuestionaire6(), "FragmentQ6"); // 11
+        adapter.addFragment(new FragmentQuestionaire7(), "FragmentQ7"); // 12
+        adapter.addFragment(new FragmentQuestionaire8(), "FragmentQ8"); // 13
+        adapter.addFragment(new FragmentQuestionaire9(), "FragmentQ9"); // 14
+        adapter.addFragment(new FragmentQuestionaire10(), "FragmentQ10"); // 15
+        adapter.addFragment(new FragmentQuestionaire11(), "FragmentQ11"); // 16
+        adapter.addFragment(new FragmentQuestionaire12(), "FragmentQ12"); // 17
+        adapter.addFragment(new FragmentQuestionaire13(), "FragmentQ13"); // 18
+        adapter.addFragment(new FragmentQuestionaire14(), "FragmentQ14"); // 19
+        adapter.addFragment(new FragmentQuestionaire15(), "FragmentQ15"); // 20
+        adapter.addFragment(new FragmentQuestionRes(), "FragmentRes"); // 21
+        adapter.addFragment(new FragmentCorvallisResourcesWater(), "CorvallisWater"); // 22
+        adapter.addFragment(new FragmentCorvallisResourcesEnergy(), "CorvallisEnergy"); // 23
+        adapter.addFragment(new FragmentCorvallisAgriculture(), "CorvallisAgriculture"); // 24
+        adapter.addFragment(new FragmentCorvallisResourcesRecycling(), "CorvallisRecycling"); // 25
 
         // copy and repeat this line for all fragments, first fragment will be loaded at start
         viewPager.setAdapter(adapter);
