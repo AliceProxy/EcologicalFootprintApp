@@ -3,4 +3,28 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="title_activity_score_tracking">ScoreTracking</string>
+    <string name="linktolocallygrown">
+        <a href="https://locallygrown.org/home/"> Locally Grown</a>
+    </string>
+    <string name="linktooregontilth">
+        <a href="https://www.tilth.org/"> Oregon Tilth</a>
+    </string>
+    <string name="linktobottledrop">
+        <a href="https://www.bottledropcenters.com/Locations/Detail/RedemptionCenter/CR"> Bottle Drop Location Finder</a>
+    </string>
+    <string name="linktorecycling">
+        <a href="https://www.corvallisoregon.gov/publicworks/page/recycling-corvallis"> Recycling Information</a>
+    </string>
+    <string name="linktoenergytrust">
+        <a href="https://www.energytrust.org/"> Oregon Energy Trust</a>
+    </string>
+    <string name="linktoseedssol">
+        <a href="http://www.seedsforthesol.org/"> Seeds For The Sol</a>
+    </string>
+    <string name="linktoeartheasy">
+        <a href="https://learn.eartheasy.com/guides/45-ways-to-conserve-water-in-the-home-and-yard/"> Tips to Conserve Water</a>
+    </string>
+    <string name="linktorainwater">
+        <a href="http://www.oregon.gov/bcd/Documents/brochures/3660.pdf"> How to Collect Rain Water</a>
+    </string>
 </resources>

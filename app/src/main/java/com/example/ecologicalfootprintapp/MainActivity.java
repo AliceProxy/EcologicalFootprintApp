@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Log.d(TAG, "questionaire completed: "+(questionaire.getCompleted()+""));
         Log.d(TAG, "questionaire completed");
-        
+
         FetchAPI();
 
     }
