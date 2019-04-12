@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class FragmentQuestionRes extends Fragment {
     private static final String TAG = "FragmentRes";
 
     private Button backButton, homeButton;
-    private TextView res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11, res12, res13, res14, res15;
+    private TextView res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11, res12, res13, res14, res15, score;
 
 
 
@@ -68,6 +69,29 @@ public class FragmentQuestionRes extends Fragment {
         res15.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ15());
 
         ((MainActivity)getActivity()).questionaire.setCompleted(true);
+
+
+        float fs1 = ((MainActivity)getActivity()).questionaire.getQ1();
+        float fs2 = ((MainActivity)getActivity()).questionaire.getQ2();
+        float fs3 = ((MainActivity)getActivity()).questionaire.getQ3();
+        float fs4 = ((MainActivity)getActivity()).questionaire.getQ4();
+        float fs5 = ((MainActivity)getActivity()).questionaire.getQ5();
+        float fs6 = ((MainActivity)getActivity()).questionaire.getQ6();
+        float fs7 = ((MainActivity)getActivity()).questionaire.getQ7();
+        float fs8 = ((MainActivity)getActivity()).questionaire.getQ8();
+        float fs9 = ((MainActivity)getActivity()).questionaire.getQ9();
+        float fs10 = ((MainActivity)getActivity()).questionaire.getQ10();
+        float fs11 = ((MainActivity)getActivity()).questionaire.getQ11();
+        float fs12 = ((MainActivity)getActivity()).questionaire.getQ12();
+        float fs13 = ((MainActivity)getActivity()).questionaire.getQ13();
+        float fs14 = ((MainActivity)getActivity()).questionaire.getQ14();
+        float fs15 = ((MainActivity)getActivity()).questionaire.getQ15();
+
+        float finalScore = (fs1 + fs2 + fs3 + fs4 + fs5 + fs6 + fs7 + fs8
+                + fs9 + fs10 + fs11 + fs12 + fs13 + fs14 + fs15) / 121;
+        score = (TextView) view.findViewById(R.id.score);
+        DecimalFormat df = new DecimalFormat("0.00");
+        score.setText("Your Score: "+df.format(finalScore));
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
