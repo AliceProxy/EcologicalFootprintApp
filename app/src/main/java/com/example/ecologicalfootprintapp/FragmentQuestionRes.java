@@ -78,11 +78,12 @@ public class FragmentQuestionRes extends Fragment {
 
         SQLiteDatabase myDatabase = getActivity().openOrCreateDatabase("FootPrintDB",android.content.Context.MODE_PRIVATE ,null);
 
-        myDatabase.execSQL("CREATE TABLE IF NOT EXISTS FootPrintData2(pCropland FLOAT, pGrazing FLOAT, pForestProduct FLOAT, pCarbon FLOAT, pFish FLOAT, pBuiltUpLand FLOAT, " +
-                "cCropland FLOAT, cGrazing FLOAT, cForestProduct FLOAT, cCarbon FLOAT, cFish FLOAT, cBuiltUpLand FLOAT);");
-        myDatabase.execSQL("INSERT INTO FootPrintData2 VALUES(1.3, 0.3, 0.8, 5.7, 0.1, 0.1, 1.0, 0.3, 0.8, 6.0, 0.1, 0.1);");
+        myDatabase.execSQL("CREATE TABLE IF NOT EXISTS FootPrintData3(pCropland FLOAT, pGrazing FLOAT, pForestProduct FLOAT, pCarbon FLOAT, pFish FLOAT, pBuiltUpLand FLOAT, " +
+                "cCropland FLOAT, cGrazing FLOAT, cForestProduct FLOAT, cCarbon FLOAT, cFish FLOAT, cBuiltUpLand FLOAT, " +
+                "eqfCropland FLOAT, eqfGrazing FLOAT, eqfForestProduct FLOAT, eqfCarbon FLOAT, eqfFish FLOAT, eqfBuiltUpLand FLOAT);");
+        myDatabase.execSQL("INSERT INTO FootPrintData3 VALUES(1.3, 0.3, 0.8, 5.7, 0.1, 0.1, 1.0, 0.3, 0.8, 6.0, 0.1, 0.1, 2.39, 1.24, 0.51, 0.41, 2.39, 1.33);");
 
-        Cursor resultSet = myDatabase.rawQuery("Select * from FootPrintData2",null);
+        Cursor resultSet = myDatabase.rawQuery("Select * from FootPrintData3",null);
         resultSet.moveToFirst();
         float pCropland = resultSet.getFloat(0);
         float pGrazing = resultSet.getFloat(1);
@@ -98,9 +99,16 @@ public class FragmentQuestionRes extends Fragment {
         float cFish = resultSet.getFloat(10);
         float cBuiltUpLand = resultSet.getFloat(11);
 
+        float eqfCropland = resultSet.getFloat(12);
+        float eqfGrazing = resultSet.getFloat(13);
+        float eqfForestProduct = resultSet.getFloat(14);
+        float eqfCarbon = resultSet.getFloat(15);
+        float eqfFish = resultSet.getFloat(16);
+        float eqfBuiltUpLand = resultSet.getFloat(17);
+
 
         test = (TextView) view.findViewById(R.id.test);
-        test.setText("Test: "+pCropland+"Test: "+cCarbon+"Test: "+cBuiltUpLand);
+        test.setText("Test: "+pCropland+"Test: "+cCarbon+"Test: "+eqfBuiltUpLand);
 
 
 
