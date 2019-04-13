@@ -1,5 +1,7 @@
 package com.example.ecologicalfootprintapp;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,11 +21,14 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+import static android.database.sqlite.SQLiteDatabase.openDatabase;
+
 public class FragmentQuestionRes extends Fragment {
     private static final String TAG = "FragmentRes";
 
     private Button backButton, homeButton;
-    private TextView res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11, res12, res13, res14, res15, score;
+    private TextView res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11, res12, res13, res14, res15, score, test;
 
 
 
@@ -69,6 +74,21 @@ public class FragmentQuestionRes extends Fragment {
         res15.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ15());
 
         ((MainActivity)getActivity()).questionaire.setCompleted(true);
+
+
+        SQLiteDatabase myDatabase = getActivity().openOrCreateDatabase("FootPrintDB",android.content.Context.MODE_PRIVATE ,null);
+
+        myDatabase.execSQL("CREATE TABLE IF NOT EXISTS FootPrintData(Username VARCHAR,Password VARCHAR);");
+        myDatabase.execSQL("INSERT INTO FootPrintData VALUES('admin','admin');");
+
+        Cursor resultSet = myDatabase.rawQuery("Select * from FootPrintData",null);
+        resultSet.moveToFirst();
+        String username = resultSet.getString(0);
+        String password = resultSet.getString(1);
+
+        test = (TextView) view.findViewById(R.id.test);
+        test.setText("Test: "+username);
+
 
 
         float fs1 = ((MainActivity)getActivity()).questionaire.getQ1();
