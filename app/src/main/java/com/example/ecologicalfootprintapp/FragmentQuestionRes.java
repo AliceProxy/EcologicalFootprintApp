@@ -120,6 +120,7 @@ public class FragmentQuestionRes extends Fragment {
         float fs14 = ((MainActivity)getActivity()).questionaire.getQ14();
         float fs15 = ((MainActivity)getActivity()).questionaire.getQ15();
 
+
         float finalScore = (fs1 + fs2 + fs3 + fs4 + fs5 + fs6 + fs7 + fs8
                 + fs9 + fs10 + fs11 + fs12 + fs13 + fs14 + fs15) / 121;
         score = (TextView) view.findViewById(R.id.score);
