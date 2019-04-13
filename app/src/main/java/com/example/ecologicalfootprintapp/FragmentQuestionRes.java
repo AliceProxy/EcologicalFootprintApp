@@ -78,16 +78,29 @@ public class FragmentQuestionRes extends Fragment {
 
         SQLiteDatabase myDatabase = getActivity().openOrCreateDatabase("FootPrintDB",android.content.Context.MODE_PRIVATE ,null);
 
-        myDatabase.execSQL("CREATE TABLE IF NOT EXISTS FootPrintData(Username VARCHAR,Password VARCHAR);");
-        myDatabase.execSQL("INSERT INTO FootPrintData VALUES('admin','admin');");
+        myDatabase.execSQL("CREATE TABLE IF NOT EXISTS FootPrintData2(pCropland FLOAT, pGrazing FLOAT, pForestProduct FLOAT, pCarbon FLOAT, pFish FLOAT, pBuiltUpLand FLOAT, " +
+                "cCropland FLOAT, cGrazing FLOAT, cForestProduct FLOAT, cCarbon FLOAT, cFish FLOAT, cBuiltUpLand FLOAT);");
+        myDatabase.execSQL("INSERT INTO FootPrintData2 VALUES(1.3, 0.3, 0.8, 5.7, 0.1, 0.1, 1.0, 0.3, 0.8, 6.0, 0.1, 0.1);");
 
-        Cursor resultSet = myDatabase.rawQuery("Select * from FootPrintData",null);
+        Cursor resultSet = myDatabase.rawQuery("Select * from FootPrintData2",null);
         resultSet.moveToFirst();
-        String username = resultSet.getString(0);
-        String password = resultSet.getString(1);
+        float pCropland = resultSet.getFloat(0);
+        float pGrazing = resultSet.getFloat(1);
+        float pForestProduct = resultSet.getFloat(2);
+        float pCarbon = resultSet.getFloat(3);
+        float pFish = resultSet.getFloat(4);
+        float pBuiltUpLand = resultSet.getFloat(5);
+
+        float cCropland = resultSet.getFloat(6);
+        float cGrazing = resultSet.getFloat(7);
+        float cForestProduct = resultSet.getFloat(8);
+        float cCarbon = resultSet.getFloat(9);
+        float cFish = resultSet.getFloat(10);
+        float cBuiltUpLand = resultSet.getFloat(11);
+
 
         test = (TextView) view.findViewById(R.id.test);
-        test.setText("Test: "+username);
+        test.setText("Test: "+pCropland+"Test: "+cCarbon+"Test: "+cBuiltUpLand);
 
 
 
