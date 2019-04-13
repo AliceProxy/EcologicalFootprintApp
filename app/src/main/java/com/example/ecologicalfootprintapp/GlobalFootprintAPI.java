@@ -2,73 +2,59 @@ package com.example.ecologicalfootprintapp;
 
 import android.net.Uri;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class GlobalFootprintAPI {
-    private final static String OPENWEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/forecast";
-    private final static String OPENWEATHER_SEARCH_QUERY_PARAM = "q";
-    private final static String SEARCH_QUERY_PARAM_TWO = "units";
-    private final static String SEARCH_QUERY_PARAM_THREE = "metric";
-    private final static String OPENWEATHER_APPID = "APPID";
-    private final static String OPENWEATHER_APPID_KEY = "f86d0e7b17193c228947d492315877fd";
-
-    public static URL buildOpenWeatherSearchURL(String city) {
-        Uri openweatherSearchUri = Uri.parse(OPENWEATHER_BASE_URL).buildUpon()
-                .appendQueryParameter(OPENWEATHER_SEARCH_QUERY_PARAM, city).appendQueryParameter(SEARCH_QUERY_PARAM_TWO, SEARCH_QUERY_PARAM_THREE)
-                .appendQueryParameter(OPENWEATHER_APPID, OPENWEATHER_APPID_KEY)
-                .build();
-        URL url = null;
+    public static String getRequest() {
+        StringBuffer stringBuffer = new StringBuffer("");
+        BufferedReader bufferedReader = null;
         try {
-            url = new URL(openweatherSearchUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return url;
-    }
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpGet httpGet = new HttpGet();
 
-        public static  class SearchResult implements Serializable {
-            public static final String EXTRA_SEARCH_RESULT = "OpenWeatherUtils.SearchResult";
-            public String DT;
-            public double mainTemp;
-            public String mainWeather;
-            public String display;
+            URI uri = new URI("https://api.footprintnetwork.org/v1/countries");
+            httpGet.setURI(uri);
 
-        }
+            HttpResponse httpResponse = httpClient.execute(httpGet);
+            InputStream inputStream = httpResponse.getEntity().getContent();
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        public static ArrayList<SearchResult> parseOpenWeatherSearchResultsJSON(String searchResultsJSON) {
-            try {
-                JSONObject searchResultsObj = new JSONObject(searchResultsJSON);
-                JSONArray searchResultsItems = searchResultsObj.getJSONArray("list");
-
-                ArrayList<SearchResult> searchResultsList = new ArrayList<SearchResult>();
-                for (int i = 0; i < searchResultsItems.length(); i++) {
-                    SearchResult searchResult = new SearchResult();
-                    JSONObject searchResultItem = searchResultsItems.getJSONObject(i);
-                    searchResult.DT = searchResultItem.getString("dt_txt");
-                    JSONObject main = searchResultItem.getJSONObject("main");
-                    searchResult.mainTemp = main.getDouble("temp");
-
-                    JSONArray weatherArray = searchResultItem.getJSONArray("weather");
-                    for(int j = 0 ;j < weatherArray.length(); j++){
-                        JSONObject weather = weatherArray.getJSONObject(j);
-                        searchResult.mainWeather = weather.getString("main");
-                    }
-                    searchResult.display = searchResult.DT + " " + searchResult.mainTemp + "C" + " " +  searchResult.mainWeather;
-                    searchResultsList.add(searchResult);
+            String readLine = bufferedReader.readLine();
+            while (readLine != null) {
+                stringBuffer.append(readLine);
+                stringBuffer.append("\n");
+                readLine = bufferedReader.readLine();
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    // TODO: handle exception
                 }
-                return searchResultsList;
-            } catch (JSONException e) {
-                return null;
             }
         }
-
+        return stringBuffer.toString();
     }
-
-
+}
