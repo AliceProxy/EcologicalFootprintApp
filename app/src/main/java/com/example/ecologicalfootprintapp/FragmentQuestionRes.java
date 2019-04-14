@@ -75,7 +75,13 @@ public class FragmentQuestionRes extends Fragment {
 
         ((MainActivity)getActivity()).questionaire.setCompleted(true);
 
-
+        /*This is the SQLlite initialization code which creates a database and tables to store the data
+          that we will need to calculate the ecological footprint. The data/values we chose to store correspond
+          to the ecological footprint of production & ecological footprint of consumption for different categories
+          such as cropland, grazing, carbon, builtupland, forestproduct, fish. This data has been obtained via the
+          GlobalFootprint Network's National Footprint Accounts 2018. This data is constant and is utilized in the
+          calculation of an individual's footprint score by fetching it from the database.
+         */
         SQLiteDatabase myDatabase = getActivity().openOrCreateDatabase("FootPrintDB",android.content.Context.MODE_PRIVATE ,null);
 
         myDatabase.execSQL("CREATE TABLE IF NOT EXISTS FootPrintData3(pCropland FLOAT, pGrazing FLOAT, pForestProduct FLOAT, pCarbon FLOAT, pFish FLOAT, pBuiltUpLand FLOAT, " +
@@ -108,7 +114,7 @@ public class FragmentQuestionRes extends Fragment {
 
 
         test = (TextView) view.findViewById(R.id.test);
-        test.setText("Test: "+pCropland+"Test: "+cCarbon+"Test: "+eqfBuiltUpLand);
+       // test.setText("Test: "+pCropland+"Test: "+cCarbon+"Test: "+eqfBuiltUpLand);
 
 
 
@@ -129,8 +135,52 @@ public class FragmentQuestionRes extends Fragment {
         float fs15 = ((MainActivity)getActivity()).questionaire.getQ15();
 
 
-        float finalScore = (fs1 + fs2 + fs3 + fs4 + fs5 + fs6 + fs7 + fs8
-                + fs9 + fs10 + fs11 + fs12 + fs13 + fs14 + fs15) / 121;
+        /*This section of code calculates an individual's footprint score.
+          The formula being used here is the (ecological footprint of consumption /
+          ecological footprint of production * the user's value(input) * equivalence factor.
+          The equivalence factor is a scaling factor that is applied for different countries. We
+          obtained this value from the national footprint accounts for the United States.
+
+         */
+        float answer1 = ((cGrazing/pGrazing)*fs1)*eqfGrazing;
+        float answer2 = ((cCropland/pCropland)*fs2)*eqfCropland;
+        float answer3 = ((cBuiltUpLand/pBuiltUpLand)*fs3)*eqfBuiltUpLand;
+        float answer4 = ((cForestProduct/pForestProduct)*fs4)*eqfForestProduct;
+        float answer5 = ((cBuiltUpLand/pBuiltUpLand)*fs5)*eqfBuiltUpLand;
+        float answer6 = ((cBuiltUpLand/pBuiltUpLand)*fs6)*eqfBuiltUpLand;
+        float answer7 = ((cCarbon/pCarbon)*fs7)*eqfCarbon;
+        float answer8 = ((cCarbon/pCarbon)*fs8)*eqfCarbon;
+        float answer9 = ((cCarbon/pCarbon)*fs9)*eqfCarbon;
+        float answer10 = ((cCarbon/pCarbon)*fs10)*eqfCarbon;
+        float answer11 = ((cCarbon/pCarbon)*fs11)*eqfCarbon;
+        float answer12 = ((cCarbon/pCarbon)*fs12)*eqfCarbon;
+        float answer13 = ((cCarbon/pCarbon)*fs13)*eqfCarbon;
+        float answer14 = ((cCarbon/pCarbon)*fs14)*eqfCarbon;
+        float answer15 = ((cCarbon/pCarbon)*fs15)*eqfCarbon;
+
+
+        /*float answer1 = (fs1/pGrazing)*eqfGrazing;
+        float answer2 = (fs2/pCropland)*eqfCropland;
+        float answer3 = (fs3/pBuiltUpLand)*eqfBuiltUpLand;
+        float answer4 = (fs4/pForestProduct)*eqfForestProduct;
+        float answer5 = (fs5/pBuiltUpLand)*eqfBuiltUpLand;
+        float answer6 = (fs6/pBuiltUpLand)*eqfBuiltUpLand;
+        float answer7 = (fs7/pCarbon)*eqfCarbon;
+        float answer8 = (fs8/pCarbon)*eqfCarbon;
+        float answer9 = (fs9/pCarbon)*eqfCarbon;
+        float answer10 = (fs10/pCarbon)*eqfCarbon;
+        float answer11 = (fs11/pCarbon)*eqfCarbon;
+        float answer12 = (fs12/pCarbon)*eqfCarbon;
+        float answer13 = (fs13/pCarbon)*eqfCarbon;
+        float answer14 = (fs14/pCarbon)*eqfCarbon;
+        float answer15 = (fs15/pCarbon)*eqfCarbon;*/
+
+
+
+        float finalScore = answer1 + answer2 + answer3 + answer4 + answer5 +
+                            answer6 + answer7 + answer8 + answer9 + answer10 +
+                            answer11 + answer12 + answer13 + answer14 + answer15;
+
         score = (TextView) view.findViewById(R.id.score);
         DecimalFormat df = new DecimalFormat("0.00");
         score.setText("Your Score: "+df.format(finalScore));
