@@ -236,7 +236,7 @@ public class FragmentQuestionRes extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).setViewPager(20);
+                ((MainActivity)getActivity()).setViewPager(19);
             }
         });
 

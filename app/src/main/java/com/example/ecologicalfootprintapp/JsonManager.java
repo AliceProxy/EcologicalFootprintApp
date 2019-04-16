@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.ecologicalfootprintapp.Questionaire;
 
@@ -78,6 +79,41 @@ public class JsonManager
             e.printStackTrace();
             Log.e("Exception", "File write failed: " + e.toString());
         }
+    }
+
+    public void addScore(double score)
+    {
+        List<Double> scores = getScore();
+        JSONArray jArray = JArrayFromFile("Questionaire.json", context);
+        try
+        {
+           jArray.getJSONObject(jArray.length()).put("score", score);
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Double> getScore()
+    {
+        List<Double> scores = new ArrayList<Double>();
+        // getting a JSONArray for the contents of the specified file name
+        JSONArray jArray = JArrayFromFile("Questionaire.json", context);
+        try
+        {
+            if(jArray != null)
+                for(int i = 1; i < jArray.length(); i++)
+                {
+                    scores.add(jArray.getJSONObject(i).getDouble("score"));
+                }
+
+        } catch (JSONException e)
+        {
+            e.printStackTrace();
+
+        }
+        return scores;
     }
 
 

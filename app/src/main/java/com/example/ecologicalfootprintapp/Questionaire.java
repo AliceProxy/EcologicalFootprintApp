@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Questionaire
 {
@@ -32,12 +33,20 @@ public class Questionaire
 
         //initialize the Json Manager
         jManager = new JsonManager(activityContext);
+        jManager.addScore(2.0f);
     }
 
 
+    public List<Double> getScores()
+    {
+        return jManager.getScore();
+    }
 
 
-
+    public void addScore(double score)
+    {
+        jManager.addScore(score);
+    }
 
 
 

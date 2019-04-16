@@ -80,7 +80,7 @@ public class FragmentQuestionaire15 extends Fragment {
             public void onClick(View v) {
                 ((MainActivity)getActivity()).questionaire.setQ15(answerSpinner.getSelectedItemPosition());
                 Log.e("Answer 15 Spinner",""+answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(19);
+                ((MainActivity)getActivity()).setViewPager(18);
 
             }
         });
@@ -91,7 +91,7 @@ public class FragmentQuestionaire15 extends Fragment {
                 ((MainActivity)getActivity()).questionaire.setQ15(answerSpinner.getSelectedItemPosition());
                 Log.e("Answer 15 Spinner",""+answerSpinner.getSelectedItemPosition());
                 Log.e("Reading Answer 15 ",""+answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(22);
+                ((MainActivity)getActivity()).setViewPager(21);
             }
         });
 

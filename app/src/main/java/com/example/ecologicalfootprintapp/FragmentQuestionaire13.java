@@ -77,7 +77,7 @@ public class FragmentQuestionaire13 extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).questionaire.setQ13(answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(17);
+                ((MainActivity)getActivity()).setViewPager(16);
 
             }
         });
@@ -86,7 +86,7 @@ public class FragmentQuestionaire13 extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).questionaire.setQ13(answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(19);
+                ((MainActivity)getActivity()).setViewPager(18);
 
             }
         });

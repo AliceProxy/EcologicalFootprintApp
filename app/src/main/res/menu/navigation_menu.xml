@@ -16,11 +16,6 @@
     </item>
 
     <item
-        android:id="@+id/reduceImpact"
-        android:title="Reduce Your Impact">
-    </item>
-
-    <item
         android:id="@+id/corvallisResources"
         android:title="Corvallis Resources">
     </item>

@@ -41,7 +41,6 @@ public class FragmentCorvallisResourcesWater extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
 
-        FragmentQuestionRes.getInstance().updateQ15();
         final String waterContentText1, waterContentText2;
         waterContentText1 = getString(R.string.corvallisWater1);
         waterContentText2 = getString(R.string.corvallisWater2);

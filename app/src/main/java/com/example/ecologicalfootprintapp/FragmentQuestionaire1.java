@@ -79,7 +79,7 @@ public class FragmentQuestionaire1 extends Fragment {
             public void onClick(View v) {
                 //Toast.makeText(getActivity(),"Clicked nextButton", Toast.LENGTH_SHORT).show();
                 ((MainActivity)getActivity()).questionaire.setQ1(answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(7);
+                ((MainActivity)getActivity()).setViewPager(6);
 
             }
         });

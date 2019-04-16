@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class FragmentScoreTracking extends Fragment {
@@ -47,6 +48,7 @@ public class FragmentScoreTracking extends Fragment {
         xAxis.add("Saturday");
         xAxis.add("Sunday");
 
+
         // will need to be re-worked after score is calculated
         yAxis.add(new Entry(10, 0));
         yAxis.add(new Entry(9, 1));
@@ -55,6 +57,13 @@ public class FragmentScoreTracking extends Fragment {
         yAxis.add(new Entry(8, 4));
         yAxis.add(new Entry(7, 5));
         yAxis.add(new Entry(8, 6));
+
+        /*
+        List<Double> scores = ((MainActivity)getActivity()).questionaire.getScore();
+        {
+
+        }
+        */
 
         String[] stringArray = new String[xAxis.size()];
 

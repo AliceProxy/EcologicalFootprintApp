@@ -72,7 +72,7 @@ public class FragmentQuestionaire5 extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).questionaire.setQ5(answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(9);
+                ((MainActivity)getActivity()).setViewPager(8);
 
             }
         });
@@ -81,7 +81,7 @@ public class FragmentQuestionaire5 extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).questionaire.setQ5(answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(11);
+                ((MainActivity)getActivity()).setViewPager(10);
 
             }
         });

@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentReduceImpact extends Fragment {
+public class Fragment6 extends Fragment {
     private static final String TAG = "FragmentImpact";
 
 
