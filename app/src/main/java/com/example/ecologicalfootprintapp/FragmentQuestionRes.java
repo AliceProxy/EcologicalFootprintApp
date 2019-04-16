@@ -230,6 +230,14 @@ public class FragmentQuestionRes extends Fragment {
             ((MainActivity) getActivity()).questionaire.setLandUse((float) landUseImpact);
             ((MainActivity) getActivity()).questionaire.setLivestock((float) livestockImpact);
 
+            try{
+                ((MainActivity)getActivity()).questionaire.addScore(finalScore);
+            }
+            catch(Error e)
+            {
+                Log.e("Error in res", e.getMessage());
+            }
+
 
         }
 

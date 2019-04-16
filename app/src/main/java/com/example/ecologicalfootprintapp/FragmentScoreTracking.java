@@ -1,7 +1,10 @@
 package com.example.ecologicalfootprintapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ecologicalfootprintapp.data.Score;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -25,45 +29,137 @@ import java.util.Map;
 public class FragmentScoreTracking extends Fragment {
     private static final String TAG = "FragmentTracking";
 
-    public LineChart trackingChart; // line chart for tracking progress over time
-    public ArrayList<String> xAxis = new ArrayList<>(); // tracks the labels for the graph
-    public ArrayList<Entry> yAxis = new ArrayList<>(); // values for the graph
-    public ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+        LineChart trackingChart; // line chart for tracking progress over time
+        ArrayList<String> xAxis = new ArrayList<>(); // tracks the labels for the graph
+        ArrayList<Entry> yAxis = new ArrayList<>(); // values for the graph
+        ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
+
+        List<Score> scoreList = new ArrayList<Score>();
         View view = inflater.inflate(R.layout.fragment_tracking_layout, container, false);
         Log.d(TAG, "onCreateView: started.");
 
         trackingChart = view.findViewById(R.id.lineChart);
 
-        xAxis.add("Monday");
-        xAxis.add("Tuesday");
-        xAxis.add("Wednesday");
-        xAxis.add("Thursday");
-        xAxis.add("Friday");
-        xAxis.add("Saturday");
-        xAxis.add("Sunday");
-
-
-        // will need to be re-worked after score is calculated
-        yAxis.add(new Entry(10, 0));
-        yAxis.add(new Entry(9, 1));
-        yAxis.add(new Entry(8, 2));
-        yAxis.add(new Entry(6, 3));
-        yAxis.add(new Entry(8, 4));
-        yAxis.add(new Entry(7, 5));
-        yAxis.add(new Entry(8, 6));
-
-        /*
-        List<Double> scores = ((MainActivity)getActivity()).questionaire.getScore();
+        if(((MainActivity)getActivity()).questionaire.getCompleted() == true)
         {
+            try{
+                scoreList = ((MainActivity)getActivity()).questionaire.getScores();
+
+                if(scoreList.size() < 3)
+                {
+                    xAxis.add("Monday");
+                    xAxis.add("Tuesday");
+                    xAxis.add("Wednesday");
+                    xAxis.add("Thursday");
+                    xAxis.add("Friday");
+                    xAxis.add("Saturday");
+                    xAxis.add("Sunday");
+
+
+
+                    // will need to be re-worked after score is calculated
+                    yAxis.add(new Entry(10, 0));
+                    yAxis.add(new Entry(9, 1));
+                    yAxis.add(new Entry(8, 2));
+                    yAxis.add(new Entry(6, 3));
+                    yAxis.add(new Entry(8, 4));
+                    yAxis.add(new Entry(7, 5));
+                    yAxis.add(new Entry(8, 6));
+
+                    trackingChart.setVisibleXRange(6, 10);
+
+                    Log.e("No Scores", "no scores");
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("Can't display tracking without any scores!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //do things
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                }
+                else
+                {
+                    float max = 1, min = 0;
+                    for(int i = 2; i < scoreList.size(); i++)
+                    {
+                        xAxis.add("Day "+(i-2));
+                        yAxis.add(new Entry((float)scoreList.get(i).getScore(), i-2));
+
+                        if((float)scoreList.get(i).getScore() > max)
+                        {
+                            max = (float)scoreList.get(i).getScore();
+                        }
+                        if((float)scoreList.get(i).getScore() < min)
+                        {
+                            min = (float)scoreList.get(i).getScore();
+                        }
+                    }
+                    for(int i = 0; i < yAxis.size(); i++) {
+                        Log.e("Yaxis: ", yAxis.get(i).toString());
+                    }
+
+                    for(int i = 0; i < xAxis.size(); i++) {
+                        Log.e("Xaxis: ", xAxis.get(i));
+                    }
+
+                    trackingChart.setVisibleXRangeMaximum(scoreList.size() - 2);
+                }
+            }
+            catch(Error e)
+            {
+                Log.e("Error in res", e.getMessage());
+            }
+        }
+        else
+        {
+            xAxis.add("Monday");
+            xAxis.add("Tuesday");
+            xAxis.add("Wednesday");
+            xAxis.add("Thursday");
+            xAxis.add("Friday");
+            xAxis.add("Saturday");
+            xAxis.add("Sunday");
+
+
+            // will need to be re-worked after score is calculated
+            yAxis.add(new Entry(10, 0));
+            yAxis.add(new Entry(9, 1));
+            yAxis.add(new Entry(8, 2));
+            yAxis.add(new Entry(6, 3));
+            yAxis.add(new Entry(8, 4));
+            yAxis.add(new Entry(7, 5));
+            yAxis.add(new Entry(8, 6));
+
+            trackingChart.setVisibleXRange(6, 10);
+
+            Log.e("No Scores", "no scores");
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Can't display tracking without any scores!")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
 
         }
-        */
+
+
+
 
         String[] stringArray = new String[xAxis.size()];
 
@@ -84,7 +180,6 @@ public class FragmentScoreTracking extends Fragment {
 
         trackingChart.setData(new LineData(stringArray, lineDataSets));
 
-        trackingChart.setVisibleXRange(6, 10);
         trackingChart.setTouchEnabled(true);
         trackingChart.setDragEnabled(true);
         trackingChart.setGridBackgroundColor(this.getResources().getColor(R.color.color3));
@@ -126,6 +221,8 @@ public class FragmentScoreTracking extends Fragment {
         chartYAxis2.setGridLineWidth(5);
         chartYAxis2.setAxisLineColor(this.getResources().getColor(R.color.color3));
         chartYAxis2.setAxisLineWidth(5);
+
+
 
 
 

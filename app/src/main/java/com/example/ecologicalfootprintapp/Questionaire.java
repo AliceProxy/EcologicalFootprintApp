@@ -2,8 +2,10 @@ package com.example.ecologicalfootprintapp;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.util.Log;
 import android.view.View;
 import com.example.ecologicalfootprintapp.JsonManager;
+import com.example.ecologicalfootprintapp.data.Score;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,20 +35,44 @@ public class Questionaire
 
         //initialize the Json Manager
         jManager = new JsonManager(activityContext);
-        jManager.addScore(2.0f);
+
+        //jManager.validateFile("Questionaire.json", cont);
+        //jManager.addScore(2.45);
+        //jManager.addScore(6.45);
+
+        /*
+        List<Score> scores = jManager.getScore();
+
+        for(int i = 0; i < scores.size(); i++)
+        {
+            Log.e("scores i", ""+scores.get(i).getScore());
+        }
+
+        jManager.addScore(6.2);
+        jManager.addScore(4.13);
+
+        scores = jManager.getScore();
+
+        for(int i = 0; i < scores.size(); i++)
+        {
+            Log.e("scores i 2", ""+scores.get(i).getScore());
+        }
+
+        //jManager.addScore(2.0);
+        */
     }
 
 
-    public List<Double> getScores()
+    public List<Score> getScores()
     {
         return jManager.getScore();
     }
-
 
     public void addScore(double score)
     {
         jManager.addScore(score);
     }
+
 
 
 

@@ -20,10 +20,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ecologicalfootprintapp.Questionaire;
+import com.example.ecologicalfootprintapp.data.Score;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class JsonManager
 {
@@ -81,39 +85,45 @@ public class JsonManager
         }
     }
 
-    public void addScore(double score)
-    {
-        List<Double> scores = getScore();
+
+    public void addScore(double score) {
+        List<Score> scores = getScore();
         JSONArray jArray = JArrayFromFile("Questionaire.json", context);
-        try
-        {
-           jArray.getJSONObject(jArray.length()).put("score", score);
-        }
-        catch (JSONException e)
-        {
+        scores.add(new Score(""+score));
+        try {
+            JSONObject newScore = new JSONObject();
+            newScore.put("score", ""+score);
+            jArray.getJSONObject(1).getJSONArray("scores").put(newScore);
+            String jsonString = jArray.toString();
+            OutputStreamWriter outStream = new OutputStreamWriter(context.openFileOutput("Questionaire.json", Context.MODE_PRIVATE));
+            outStream.write(jsonString);
+            outStream.close();
+
+        } catch (JSONException  | IOException e) {
             e.printStackTrace();
         }
     }
 
-    public List<Double> getScore()
+
+    public List<Score> getScore()
     {
-        List<Double> scores = new ArrayList<Double>();
+
+
+        List<Score> scores = new ArrayList<Score>();
         // getting a JSONArray for the contents of the specified file name
         JSONArray jArray = JArrayFromFile("Questionaire.json", context);
-        try
-        {
-            if(jArray != null)
-                for(int i = 1; i < jArray.length(); i++)
-                {
-                    scores.add(jArray.getJSONObject(i).getDouble("score"));
-                }
+        try {
+            String scoresObject = jArray.getJSONObject(1).getJSONArray("scores").toString();
+            Log.e("getting scores string", scoresObject);
+            Type scoreType = new TypeToken<ArrayList<Score>>(){}.getType();
+            scores = new Gson().fromJson(scoresObject, scoreType);
 
-        } catch (JSONException e)
-        {
+
+        } catch (JSONException e) {
             e.printStackTrace();
-
         }
         return scores;
+
     }
 
 

@@ -26,6 +26,14 @@
     "TotalScore":"0"
   },
   {
-    "score": 0.0
+    "scores": [
+      {
+        "score":"0.0"
+      },
+      {
+        "score":"0.0"
+      }
+    ]
+
   }
 ]

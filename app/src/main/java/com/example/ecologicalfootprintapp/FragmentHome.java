@@ -35,7 +35,7 @@ public class FragmentHome extends Fragment
         startQuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).setViewPager(6);
+                ((MainActivity)getActivity()).setViewPager(5);
                 Toast.makeText(getActivity(),"Clicked startButton", Toast.LENGTH_SHORT).show();
             }
         });
