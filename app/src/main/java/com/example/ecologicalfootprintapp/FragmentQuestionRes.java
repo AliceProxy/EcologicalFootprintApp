@@ -178,10 +178,11 @@ public class FragmentQuestionRes extends Fragment {
 
         score = (TextView) view.findViewById(R.id.score);
         DecimalFormat df = new DecimalFormat("0.00");
-        score.setText("Your Score: "+df.format(finalScore));
+        score.setText("Your Score: "+df.format(finalScore)+" gha");
 
         test = (TextView) view.findViewById(R.id.test);
-        test.setText("The Ecological Footprint per person in the US is 8.6 global hectares (gha)");
+        test.setText("The Ecological Footprint per person in the US is 8.6 global hectares (gha). " +
+                "To improve your score, please look at the 'Reduce Your Impact' page.");
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
