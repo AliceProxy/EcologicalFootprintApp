@@ -27,4 +27,14 @@
     <string name="linktorainwater">
         <a href="http://www.oregon.gov/bcd/Documents/brochures/3660.pdf"> How to Collect Rain Water</a>
     </string>
+
+    <string name="corvallisWater1">Eartheasy has a guide on their website that helps people find ways to reduce their water usage around the home. They also offer some interesting statistics on water usage and how the most water is wasted.</string>
+    <string name="corvallisWater2">The Corvallis city website offers information about water services within the city. Some of the resources they provide are stormwater management, wastewater information, and water conservation information.</string>
+    <string name="corvallisEnergy1">Seeds for the sol is a non-profit organization that allows communities to group fund solar power projects and share in the benefits. They offer a more affordable option for those who are interested in solar power projects.</string>
+    <string name="corvallisEnergy2">The energy trust of Oregon offers free kits that contain low power led lightbulbs that fit standard connectors as well as a low flow faucet nozzle and shower head. Visit their website to order yours for free.</string>
+    <string name="corvallisRecycling1">Corvallis has it\'s very own bottle drop center. You can take bottles and cans that have a deposit tax on them to this center to get the deposit money back. For each bottle it is currently ten cents.</string>
+    <string name="corvallisRecycling2">The Corvallis.gov city website has some recycling information such as when and how recycling is handled within the city, as well as the companies that offer recycling services.</string>
+    <string name="corvallisAgri1">Corvallis has many farmers markets throughout the seasons. They can be a good opportunity for members of the community to purchase fresh local produce while supporting sustainable local farmers. You can visit Locally Grown to view dates and locations.</string>
+    <string name="corvallisAgri2">There is an organization called Oregon Tilth that has a library of agricultural resources for Oregon residents. This page contains information such as farm business management, water conservation, and much more information about sustainable farming.</string>
+
 </resources>

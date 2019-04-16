@@ -109,11 +109,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new FragmentQuestionaire13(), "FragmentQ13"); // 18
         adapter.addFragment(new FragmentQuestionaire14(), "FragmentQ14"); // 19
         adapter.addFragment(new FragmentQuestionaire15(), "FragmentQ15"); // 20
-        adapter.addFragment(new FragmentQuestionRes(), "FragmentRes"); // 21
-        adapter.addFragment(new FragmentCorvallisResourcesWater(), "CorvallisWater"); // 22
-        adapter.addFragment(new FragmentCorvallisResourcesEnergy(), "CorvallisEnergy"); // 23
-        adapter.addFragment(new FragmentCorvallisAgriculture(), "CorvallisAgriculture"); // 24
-        adapter.addFragment(new FragmentCorvallisResourcesRecycling(), "CorvallisRecycling"); // 25
+        adapter.addFragment(new FragmentQuestionResDuplicate(), "FragmentResDuplicate"); // 21
+        adapter.addFragment(new FragmentQuestionRes(), "FragmentRes"); // 22
+        adapter.addFragment(new FragmentCorvallisResourcesWater(), "CorvallisWater"); // 23
+        adapter.addFragment(new FragmentCorvallisResourcesEnergy(), "CorvallisEnergy"); // 24
+        adapter.addFragment(new FragmentCorvallisAgriculture(), "CorvallisAgriculture"); // 25
+        adapter.addFragment(new FragmentCorvallisResourcesRecycling(), "CorvallisRecycling"); // 26
 
         // copy and repeat this line for all fragments, first fragment will be loaded at start
         viewPager.setAdapter(adapter);

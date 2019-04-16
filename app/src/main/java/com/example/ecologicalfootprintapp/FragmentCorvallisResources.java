@@ -30,7 +30,7 @@ public class FragmentCorvallisResources extends Fragment {
         WaterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).setViewPager(22);
+                ((MainActivity)getActivity()).setViewPager(23);
 
             }
         });
@@ -38,7 +38,7 @@ public class FragmentCorvallisResources extends Fragment {
         EnergyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).setViewPager(23);
+                ((MainActivity)getActivity()).setViewPager(24);
 
             }
         });
@@ -46,7 +46,7 @@ public class FragmentCorvallisResources extends Fragment {
         RecyclingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).setViewPager(25);
+                ((MainActivity)getActivity()).setViewPager(26);
 
             }
         });
@@ -54,7 +54,7 @@ public class FragmentCorvallisResources extends Fragment {
         AgricultureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).setViewPager(24);
+                ((MainActivity)getActivity()).setViewPager(25);
 
             }
         });

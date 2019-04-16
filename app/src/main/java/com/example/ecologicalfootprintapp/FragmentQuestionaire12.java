@@ -99,7 +99,7 @@ public class FragmentQuestionaire12 extends Fragment {
     public void resetSpinner()
     {
         int spinnerAnswer = ((MainActivity)getActivity()).questionaire.getQ12();
-        Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
+        //Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
         answerSpinner.setSelection(spinnerAnswer);
     }
 }

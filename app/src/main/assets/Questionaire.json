@@ -17,6 +17,12 @@
     "Q12":"0",
     "Q13":"0",
     "Q14":"0",
-    "Q15":"0"
+    "Q15":"0",
+    "CropLandInfluence":"0",
+    "LivestockInfluence":"0",
+    "ForestProductInfluence":"0",
+    "CarbonInfluence":"0",
+    "LandUseInfluence":"0",
+    "TotalScore":"0"
   }
 ]

@@ -79,6 +79,7 @@ public class FragmentQuestionaire15 extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).questionaire.setQ15(answerSpinner.getSelectedItemPosition());
+                Log.e("Answer 15 Spinner",""+answerSpinner.getSelectedItemPosition());
                 ((MainActivity)getActivity()).setViewPager(19);
 
             }
@@ -88,8 +89,9 @@ public class FragmentQuestionaire15 extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).questionaire.setQ15(answerSpinner.getSelectedItemPosition());
-                ((MainActivity)getActivity()).setViewPager(21);
-
+                Log.e("Answer 15 Spinner",""+answerSpinner.getSelectedItemPosition());
+                Log.e("Reading Answer 15 ",""+answerSpinner.getSelectedItemPosition());
+                ((MainActivity)getActivity()).setViewPager(22);
             }
         });
 
@@ -103,7 +105,7 @@ public class FragmentQuestionaire15 extends Fragment {
     public void resetSpinner()
     {
         int spinnerAnswer = ((MainActivity)getActivity()).questionaire.getQ15();
-        Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
+        //Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
         answerSpinner.setSelection(spinnerAnswer);
     }
 }

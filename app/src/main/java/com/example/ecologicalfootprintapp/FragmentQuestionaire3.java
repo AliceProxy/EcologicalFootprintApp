@@ -53,7 +53,7 @@ public class FragmentQuestionaire3 extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String itemvalue = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getActivity(), "Selected: "+itemvalue, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Selected: "+itemvalue, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -88,7 +88,7 @@ public class FragmentQuestionaire3 extends Fragment {
     public void resetSpinner()
     {
         int spinnerAnswer = ((MainActivity)getActivity()).questionaire.getQ3();
-        Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
+        //Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
         answerSpinner.setSelection(spinnerAnswer);
     }
 }

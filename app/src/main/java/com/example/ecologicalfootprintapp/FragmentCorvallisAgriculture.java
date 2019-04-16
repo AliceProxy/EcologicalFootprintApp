@@ -1,71 +1,147 @@
 package com.example.ecologicalfootprintapp;
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.support.annotation.NonNull;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+import com.example.ecologicalfootprintapp.TextFlowHelper;
 
 public class FragmentCorvallisAgriculture extends Fragment {
     private static final String TAG = "CorvallisAgriculture";
+    View myview;
 
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final String agriContentText1, agriContentText2;
+        agriContentText1 = getString(R.string.corvallisAgri1);
+        agriContentText2 = getString(R.string.corvallisAgri2);
+
         View view = inflater.inflate(R.layout.fragment_corvallis_agriculture, container, false);
         Log.d(TAG, "onCreateView: started.");
 
-        TextView contentBox1 = view.findViewById(R.id.AgriContent1);
-        TextView contentBox2 = view.findViewById(R.id.AgriContent2);
+        final ImageView agriPic1 = (ImageView) (view).findViewById(R.id.agriPic1);
+        final ImageView agriPic2 = (ImageView) (view).findViewById(R.id.agriPic2);
+        final TextView agriContent1 = (TextView) (view).findViewById(R.id.agriText1);
+        final TextView agriContent2 = (TextView) (view).findViewById(R.id.agriText2);
 
-        String content1 = "Corvallis has many farmers markets throughout the seasons. They can be a good opportunity for members of the community to purchase fresh local produce while supporting sustainable local farmers. You can visit Locally Grown to view dates and locations";
-        String content2 = "There is an organization called Oregon Tilth that has a library of agricultural resources for Oregon residents. This page contains information such as farm business management, water conservation, and much more information about sustainable farming.";
-
-        SpannableString ss1 = new SpannableString(content1);
-        SpannableString ss2 = new SpannableString(content2);
-
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
+        final ViewTreeObserver vto = agriPic1.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onClick(View widget)
-            {
-                Uri uri = Uri.parse("https://locallygrown.org/home/"); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+            public void onGlobalLayout() {
+                agriPic1.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                makeSpan(agriContentText1, agriContent1, agriPic1);
             }
-        };
-        ClickableSpan clickableSpan2 = new ClickableSpan() {
+        });
+
+        final ViewTreeObserver vto2 = agriPic1.getViewTreeObserver();
+        vto2.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onClick(View widget)
-            {
-                Uri uri = Uri.parse("https://www.tilth.org/"); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+            public void onGlobalLayout() {
+                agriPic1.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                makeSpan(agriContentText2, agriContent2, agriPic2);
             }
-        };
+        });
 
-        ss1.setSpan(clickableSpan1, content1.indexOf("Locally"), content1.indexOf("Locally") + 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss2.setSpan(clickableSpan2, content2.indexOf("Oregon"), content2.indexOf("Oregon") + 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        agriPic1.setOnClickListener(new View.OnClickListener() {
 
-        contentBox1.setText(ss1);
-        contentBox1.setMovementMethod(LinkMovementMethod.getInstance());
+            @Override
+            public void onClick(View v) {
 
-        contentBox2.setText(ss2);
-        contentBox2.setMovementMethod(LinkMovementMethod.getInstance());
+                openBrowser(agriPic1);
 
+            }
+        });
+
+        agriPic2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                openBrowser(agriPic2);
+
+            }
+        });
 
         return view;
+    }
+
+    private void makeSpan(String text, TextView txtView, ImageView imgView) {
+        /**
+         * Get the text
+         */
+        int finalHeight = imgView.getMeasuredHeight();
+        int finalWidth = imgView.getMeasuredWidth();
+
+        Spanned htmlText = Html.fromHtml(text);
+        SpannableString mSpannableString = new SpannableString(htmlText);
+
+        int allTextStart = 0;
+        int allTextEnd = htmlText.length() - 1;
+
+        /**
+         * Calculate the lines number = image height.
+         * You can improve it... it is just an example
+         */
+        int lines;
+        Rect bounds = new Rect();
+        txtView.getPaint().getTextBounds(text.substring(0, 10), 0, 1, bounds);
+
+        //float textLineHeight = mTextView.getPaint().getTextSize();
+        float fontSpacing = txtView.getPaint().getFontSpacing();
+        lines = (int) (finalHeight / (fontSpacing));
+
+        /**
+         * Build the layout with LeadingMarginSpan2
+         */
+        LeadingMarginSpanHelper span = new LeadingMarginSpanHelper(lines, finalWidth + 10);
+        mSpannableString.setSpan(span, allTextStart, allTextEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+        txtView.setText(mSpannableString);
+
+    }
+
+    public void openBrowser(View view) {
+
+        //Get url from tag
+        String url = (String) view.getTag();
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+
+        //pass the url to intent data
+        intent.setData(Uri.parse(url));
+
+        startActivity(intent);
+
     }
 }

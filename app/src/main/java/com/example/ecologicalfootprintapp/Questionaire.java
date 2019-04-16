@@ -20,19 +20,43 @@ public class Questionaire
     private AssetManager manager;
     private JsonManager jManager;
 
+    private Context cont;
+
     // pass in the context on construction to use methods from getAssets();
     public Questionaire(Context activityContext)
     {
         // get and store the assets
         manager = activityContext.getAssets();
 
+        cont = activityContext;
+
         //initialize the Json Manager
         jManager = new JsonManager(activityContext);
     }
 
 
+
+
+
+
+
+
     // returns the completed status boolean
     public boolean getCompleted() { return jManager.getJson("Questionaire.json","Completed").equals("true"); }
+
+    public float getLandUseInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","LandUseInfluence")); }
+    public float getCarbonInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","CarbonInfluence")); }
+    public float getForestProductInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","ForestProductInfluence")); }
+    public float getLivestockInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","LivestockInfluence")); }
+    public float getCropLandInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","CropLandInfluence")); }
+    public float getScore() { return Float.parseFloat(jManager.getJson("Questionaire.json","TotalScore")); }
+
+    public void setScore(float val) { jManager.setJson("Questionaire.json", "TotalScore", ""+val); }
+    public void setCropLand(float val) { jManager.setJson("Questionaire.json", "CropLandInfluence", ""+val); }
+    public void setLivestock(float val) { jManager.setJson("Questionaire.json", "LivestockInfluence", ""+val); }
+    public void setCarbon(float val) { jManager.setJson("Questionaire.json", "CarbonInfluence", ""+val); }
+    public void setForestProducts(float val) { jManager.setJson("Questionaire.json", "ForestProductInfluence", ""+val); }
+    public void setLandUse(float val) { jManager.setJson("Questionaire.json", "LandUseInfluence", ""+val); }
 
     public boolean getAPI() { return jManager.getJson("Questionaire.json","ApiLinked").equals("true"); }
 
@@ -145,5 +169,7 @@ public class Questionaire
 
     public void setQ15(int q15) { jManager.setJson("Questionaire.json", "Q15", (""+q15)); }
 
-
+    public void resetAll(){
+        jManager.validateFile("Questionaire.json", cont);
+    }
 }

@@ -101,7 +101,7 @@ public class FragmentQuestionaire11 extends Fragment {
     public void resetSpinner()
     {
         int spinnerAnswer = ((MainActivity)getActivity()).questionaire.getQ11();
-        Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
+        //Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
         answerSpinner.setSelection(spinnerAnswer);
     }
 }

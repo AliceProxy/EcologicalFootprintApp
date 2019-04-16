@@ -2,6 +2,7 @@ package com.example.ecologicalfootprintapp;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,11 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.razerdp.widget.animatedpieview.AnimatedPieView;
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig;
 import com.razerdp.widget.animatedpieview.data.SimplePieInfo;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,9 +24,11 @@ public class FragmentScoreBreakdown extends Fragment
 {
     private static final String TAG = "FragmentBreakdown";
 
-    int pieColors[] = new int[8]; // stores all of the colors to be selected for the graph
+    int pieColors[] = new int[5]; // stores all of the colors to be selected for the graph
     ArrayList <Float> graphVals = new ArrayList<Float>();
     ArrayList <String> graphLabels = new ArrayList<String>();
+
+    TextView score;
 
     @Nullable
     @Override
@@ -32,21 +37,46 @@ public class FragmentScoreBreakdown extends Fragment
         View view = inflater.inflate(R.layout.fragment_breakdown_layout, container, false);
         Log.d(TAG, "onCreateView: started.");
 
+        score = (view).findViewById(R.id.middleScore);
+
 
         // manually adding colors to choose from later
-        pieColors[0] = this.getResources().getColor(R.color.color3);
-        pieColors[1] = this.getResources().getColor(R.color.color1);
-        pieColors[2] = this.getResources().getColor(R.color.colorPrimaryDark);
-        pieColors[3] = this.getResources().getColor(R.color.colorStrong);
-        pieColors[4] = this.getResources().getColor(R.color.textLight);
-        pieColors[5] = this.getResources().getColor(R.color.colorAccent);
-        pieColors[6] = this.getResources().getColor(R.color.color2);
-        pieColors[7] = this.getResources().getColor(R.color.color3);
+        pieColors[0] = this.getResources().getColor(R.color.color1); // carbon emissions
+        pieColors[1] = this.getResources().getColor(R.color.colorPrimaryDark); // forest products
+        pieColors[2] = this.getResources().getColor(R.color.colorStrong); // crop land
+        pieColors[3] = this.getResources().getColor(R.color.colorAccent); // animal products
+        pieColors[4] = this.getResources().getColor(R.color.color2); // land use
 
-        addPieValue("Electricity", 30);
-        addPieValue("Meat", 18.0f);
-        addPieValue("Water", 20.0f);
-        drawpie(view);
+
+        if(((MainActivity)getActivity()).questionaire.getCompleted() == false)
+        {
+            emptyPie();
+            addPieValue("No Score", 30.0f);
+            drawpie(view);
+        }
+        else
+        {
+            emptyPie();
+            addPieValue("CarbonEmissions", ((MainActivity)getActivity()).questionaire.getCarbonInfluence());
+            addPieValue("AnimalProducts", ((MainActivity)getActivity()).questionaire.getLivestockInfluence());
+            addPieValue("LandUse", ((MainActivity)getActivity()).questionaire.getLandUseInfluence());
+            addPieValue("CropLand", ((MainActivity)getActivity()).questionaire.getCropLandInfluence());
+            addPieValue("ForestProducts", ((MainActivity)getActivity()).questionaire.getForestProductInfluence());
+
+            for(int i = 0; i < graphVals.size(); i++)
+            {
+                Log.e("PIE Val","Value "+i+": "+graphVals.get(i));
+            }
+
+            for(int i = 0; i < graphLabels.size(); i++)
+            {
+                Log.e("PIE Label","Value "+i+": "+graphLabels.get(i));
+            }
+
+            DecimalFormat df = new DecimalFormat("0.00");
+            score.setText(""+df.format(((MainActivity)getActivity()).questionaire.getScore()));
+            drawpie(view);
+        }
 
         return view;
     }
@@ -65,11 +95,7 @@ public class FragmentScoreBreakdown extends Fragment
         // adds all of the data stored in the arrays to the graph and displays it
         for(int i = 0; i < graphLabels.size(); i++)
         {
-            // choose a random color
-            Random r = new Random();
-            int i1 = r.nextInt(8);
-
-                config.addData(new SimplePieInfo(graphVals.get(i), pieColors[i1], graphLabels.get(i))).drawText(true);
+            config.addData(new SimplePieInfo(graphVals.get(i), pieColors[i], graphLabels.get(i))).drawText(true);
         }
 
         mAnimatedPieView.applyConfig(config);
@@ -83,4 +109,10 @@ public class FragmentScoreBreakdown extends Fragment
         graphVals.add(value);
         graphLabels.add(label);
     }
+
+    public void emptyPie(){
+        graphVals = new ArrayList<Float>();
+        graphLabels = new ArrayList<String>();
+    }
+
 }

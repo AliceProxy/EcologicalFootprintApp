@@ -28,8 +28,28 @@ public class FragmentQuestionRes extends Fragment {
     private static final String TAG = "FragmentRes";
 
     private Button backButton, homeButton;
-    private TextView res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11, res12, res13, res14, res15, score, test;
+    private TextView  score;
+    public float fs15;
+    private static FragmentQuestionRes instance;
 
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        fs15 = ((MainActivity)getActivity()).questionaire.getQ15();
+        Log.e("OnStart 15:",""+fs15);
+        instance = this;
+
+    }
+
+    public void updateQ15()
+    {
+        fs15 = ((MainActivity)getActivity()).questionaire.getQ15();
+    }
+
+    public static FragmentQuestionRes getInstance() {
+        return instance;
+    }
 
 
     @Nullable
@@ -41,39 +61,9 @@ public class FragmentQuestionRes extends Fragment {
 
         backButton = (Button) view.findViewById(R.id.prev5);
         homeButton = (Button) view.findViewById(R.id.homeButton);
-        res1 = (TextView) view.findViewById(R.id.response1) ;
-        res2 = (TextView) view.findViewById(R.id.response2) ;
-        res3 = (TextView) view.findViewById(R.id.response3) ;
-        res4 = (TextView) view.findViewById(R.id.response4) ;
-        res5 = (TextView) view.findViewById(R.id.response5) ;
-        res6 = (TextView) view.findViewById(R.id.response6) ;
-        res7 = (TextView) view.findViewById(R.id.response7) ;
-        res8 = (TextView) view.findViewById(R.id.response8) ;
-        res9 = (TextView) view.findViewById(R.id.response9) ;
-        res10 = (TextView) view.findViewById(R.id.response10) ;
-        res11 = (TextView) view.findViewById(R.id.response11) ;
-        res12 = (TextView) view.findViewById(R.id.response12) ;
-        res13 = (TextView) view.findViewById(R.id.response13) ;
-        res14 = (TextView) view.findViewById(R.id.response14) ;
-        res15 = (TextView) view.findViewById(R.id.response15) ;
 
-        res1.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ1());
-        res2.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ2());
-        res3.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ3());
-        res4.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ4());
-        res5.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ5());
-        res6.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ6());
-        res7.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ7());
-        res8.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ8());
-        res9.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ9());
-        res10.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ10());
-        res11.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ11());
-        res12.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ12());
-        res13.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ13());
-        res14.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ14());
-        res15.setText("Selected Option: "+((MainActivity)getActivity()).questionaire.getQ15());
 
-        ((MainActivity)getActivity()).questionaire.setCompleted(true);
+        Log.e("Reading Answer 15 res",""+((MainActivity)getActivity()).questionaire.getQ15());
 
         /*This is the SQLlite initialization code which creates a database and tables to store the data
           that we will need to calculate the ecological footprint. The data/values we chose to store correspond
@@ -113,7 +103,7 @@ public class FragmentQuestionRes extends Fragment {
         float eqfBuiltUpLand = resultSet.getFloat(17);
 
 
-        test = (TextView) view.findViewById(R.id.test);
+        //test = (TextView) view.findViewById(R.id.test);
        // test.setText("Test: "+pCropland+"Test: "+cCarbon+"Test: "+eqfBuiltUpLand);
 
 
@@ -132,7 +122,35 @@ public class FragmentQuestionRes extends Fragment {
         float fs12 = ((MainActivity)getActivity()).questionaire.getQ12();
         float fs13 = ((MainActivity)getActivity()).questionaire.getQ13();
         float fs14 = ((MainActivity)getActivity()).questionaire.getQ14();
-        float fs15 = ((MainActivity)getActivity()).questionaire.getQ15();
+        fs15 = ((MainActivity)getActivity()).questionaire.getQ15();
+
+        score = (TextView) view.findViewById(R.id.scoreText);
+
+        if(     fs1 == 0 ||
+                fs2 == 0 ||
+                fs3 == 0 ||
+                fs4 == 0 ||
+                fs5 == 0 ||
+                fs6 == 0 ||
+                fs7 == 0 ||
+                fs8 == 0 ||
+                fs9 == 0 ||
+                fs10 == 0 ||
+                fs11 == 0 ||
+                fs12 == 0 ||
+                fs13 == 0 ||
+                fs14 == 0 ||
+                fs15 == 0
+        )
+        {
+            score.setText("Cant calculate score until all questions are answered");
+            ((MainActivity)getActivity()).questionaire.setCompleted(false);
+
+        }
+        else {
+
+            ((MainActivity)getActivity()).questionaire.setCompleted(true);
+
 
 
         /*This section of code calculates an individual's footprint score.
@@ -142,21 +160,27 @@ public class FragmentQuestionRes extends Fragment {
           obtained this value from the national footprint accounts for the United States.
 
          */
-        float answer1 = ((cGrazing/pGrazing)*fs1)*eqfGrazing;
-        float answer2 = ((cCropland/pCropland)*fs2)*eqfCropland;
-        float answer3 = ((cBuiltUpLand/pBuiltUpLand)*fs3)*eqfBuiltUpLand;
-        float answer4 = ((cForestProduct/pForestProduct)*fs4)*eqfForestProduct;
-        float answer5 = ((cBuiltUpLand/pBuiltUpLand)*fs5)*eqfBuiltUpLand;
-        float answer6 = ((cBuiltUpLand/pBuiltUpLand)*fs6)*eqfBuiltUpLand;
-        float answer7 = ((cCarbon/pCarbon)*fs7)*eqfCarbon;
-        float answer8 = ((cCarbon/pCarbon)*fs8)*eqfCarbon;
-        float answer9 = ((cCarbon/pCarbon)*fs9)*eqfCarbon;
-        float answer10 = ((cCarbon/pCarbon)*fs10)*eqfCarbon;
-        float answer11 = ((cCarbon/pCarbon)*fs11)*eqfCarbon;
-        float answer12 = ((cCarbon/pCarbon)*fs12)*eqfCarbon;
-        float answer13 = ((cCarbon/pCarbon)*fs13)*eqfCarbon;
-        float answer14 = ((cCarbon/pCarbon)*fs14)*eqfCarbon;
-        float answer15 = ((cCarbon/pCarbon)*fs15)*eqfCarbon;
+            float answer1 = ((cGrazing / pGrazing) * fs1) * eqfGrazing;
+            float answer2 = ((cCropland / pCropland) * fs2) * eqfCropland;
+            float answer3 = ((cBuiltUpLand / pBuiltUpLand) * fs3) * eqfBuiltUpLand;
+            float answer4 = ((cForestProduct / pForestProduct) * fs4) * eqfForestProduct;
+            float answer5 = ((cBuiltUpLand / pBuiltUpLand) * fs5) * eqfBuiltUpLand;
+            float answer6 = ((cBuiltUpLand / pBuiltUpLand) * fs6) * eqfBuiltUpLand;
+            float answer7 = ((cCarbon / pCarbon) * fs7) * eqfCarbon;
+            float answer8 = ((cCarbon / pCarbon) * fs8) * eqfCarbon;
+            float answer9 = ((cCarbon / pCarbon) * fs9) * eqfCarbon;
+            float answer10 = ((cCarbon / pCarbon) * fs10) * eqfCarbon;
+            float answer11 = ((cCarbon / pCarbon) * fs11) * eqfCarbon;
+            float answer12 = ((cCarbon / pCarbon) * fs12) * eqfCarbon;
+            float answer13 = ((cCarbon / pCarbon) * fs13) * eqfCarbon;
+            float answer14 = ((cCarbon / pCarbon) * fs14) * eqfCarbon;
+            float answer15 = ((cCarbon / pCarbon) * fs15) * eqfCarbon;
+
+            double carbonImpact = answer7 + answer8 + answer9 + answer10 + answer11 + answer12 + answer13 + answer14 + answer15;
+            double cropImpact = answer2;
+            double livestockImpact = answer1;
+            double landUseImpact = answer3 + answer5 + answer6;
+            double forestImpact = answer4;
 
 
         /*float answer1 = (fs1/pGrazing)*eqfGrazing;
@@ -176,15 +200,38 @@ public class FragmentQuestionRes extends Fragment {
         float answer15 = (fs15/pCarbon)*eqfCarbon;*/
 
 
+            float finalScore = answer1 + answer2 + answer3 + answer4 + answer5 +
+                    answer6 + answer7 + answer8 + answer9 + answer10 +
+                    answer11 + answer12 + answer13 + answer14 + answer15;
 
-        float finalScore = answer1 + answer2 + answer3 + answer4 + answer5 +
-                            answer6 + answer7 + answer8 + answer9 + answer10 +
-                            answer11 + answer12 + answer13 + answer14 + answer15;
+            Log.e("Answer 1", ""+answer1);
+            Log.e("Answer 2", ""+answer2);
+            Log.e("Answer 3", ""+answer3);
+            Log.e("Answer 4", ""+answer4);
+            Log.e("Answer 5", ""+answer5);
+            Log.e("Answer 6", ""+answer6);
+            Log.e("Answer 7", ""+answer7);
+            Log.e("Answer 8", ""+answer8);
+            Log.e("Answer 9", ""+answer9);
+            Log.e("Answer 10", ""+answer10);
+            Log.e("Answer 11", ""+answer11);
+            Log.e("Answer 12", ""+answer12);
+            Log.e("Answer 13", ""+answer13);
+            Log.e("Answer 14", ""+answer14);
+            Log.e("Answer 15", ""+answer15);
 
-        score = (TextView) view.findViewById(R.id.score);
-        DecimalFormat df = new DecimalFormat("0.00");
-        score.setText("Your Score: "+df.format(finalScore));
+            score = (TextView) view.findViewById(R.id.scoreText);
+            DecimalFormat df = new DecimalFormat("0.00");
+            score.setText("Your Score Is: " + df.format(finalScore));
+            ((MainActivity) getActivity()).questionaire.setScore(finalScore);
+            ((MainActivity) getActivity()).questionaire.setCarbon((float) carbonImpact);
+            ((MainActivity) getActivity()).questionaire.setCropLand((float) cropImpact);
+            ((MainActivity) getActivity()).questionaire.setForestProducts((float) forestImpact);
+            ((MainActivity) getActivity()).questionaire.setLandUse((float) landUseImpact);
+            ((MainActivity) getActivity()).questionaire.setLivestock((float) livestockImpact);
 
+
+        }
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

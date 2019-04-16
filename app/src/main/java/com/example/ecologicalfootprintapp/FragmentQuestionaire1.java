@@ -50,7 +50,7 @@ public class FragmentQuestionaire1 extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 String itemvalue = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getActivity(), "Selected: "+itemvalue, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Selected: "+itemvalue, Toast.LENGTH_SHORT).show();
 
 
             }
@@ -67,7 +67,7 @@ public class FragmentQuestionaire1 extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Clicked previousButton", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),"Clicked previousButton", Toast.LENGTH_SHORT).show();
                 ((MainActivity)getActivity()).questionaire.setQ1(answerSpinner.getSelectedItemPosition());
                 ((MainActivity)getActivity()).setViewPager(0);
                 //navigate to Fragment
@@ -77,7 +77,7 @@ public class FragmentQuestionaire1 extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Clicked nextButton", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),"Clicked nextButton", Toast.LENGTH_SHORT).show();
                 ((MainActivity)getActivity()).questionaire.setQ1(answerSpinner.getSelectedItemPosition());
                 ((MainActivity)getActivity()).setViewPager(7);
 
@@ -94,7 +94,7 @@ public class FragmentQuestionaire1 extends Fragment {
     public void resetSpinner()
     {
         int spinnerAnswer = ((MainActivity)getActivity()).questionaire.getQ1();
-        Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
+        //Toast.makeText(getActivity(), "Value is: "+spinnerAnswer, Toast.LENGTH_LONG);
         answerSpinner.setSelection(spinnerAnswer);
     }
 
