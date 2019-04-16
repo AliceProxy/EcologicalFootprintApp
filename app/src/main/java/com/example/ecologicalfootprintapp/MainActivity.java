@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         //setting up questionaire variable
         Log.d(TAG, "questionaire completed");
         questionaire = new Questionaire(this);
@@ -89,11 +90,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new FragmentHome(), "FragmentHome"); // 0
+        adapter.addFragment(new FragmentAbout(), "FragmentAbout"); // 5
         adapter.addFragment(new FragmentScoreBreakdown(), "FragmentBreakdown"); // 1
         adapter.addFragment(new FragmentScoreTracking(), "FragmentTracking"); // 2
         adapter.addFragment(new FragmentReduceImpact(), "FragmentImpact"); // 3
         adapter.addFragment(new FragmentCorvallisResources(), "FragmentCorvallis"); // 4
-        adapter.addFragment(new FragmentAbout(), "FragmentAbout"); // 5
         adapter.addFragment(new FragmentQuestionaire1(), "FragmentQ1"); // 6
         adapter.addFragment(new FragmentQuestionaire2(), "FragmentQ2"); // 7
         adapter.addFragment(new FragmentQuestionaire3(), "FragmentQ3"); // 8
@@ -150,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.scoreBreakdown)
         {
             Toast.makeText(this, "Clicked Score Breakdown", Toast.LENGTH_SHORT).show();
-            mViewPager.setCurrentItem(1);
+            mViewPager.setCurrentItem(2);
             navDrawer.closeDrawers();
 
         }
@@ -161,13 +162,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //startNewActivity = new Intent(this, ScoreTracking.class);
             // startNewActivity.putExtra(EXTRA_MESSAGE, message);
             //startActivity(startNewActivity);
-            mViewPager.setCurrentItem(2);
+            mViewPager.setCurrentItem(3);
             navDrawer.closeDrawers();
         }
         if(id == R.id.reduceImpact)
         {
             Toast.makeText(this,"Clicked Reduce Impact", Toast.LENGTH_SHORT).show();
-            mViewPager.setCurrentItem(3);
+            mViewPager.setCurrentItem(4);
             navDrawer.closeDrawers();
 
 
@@ -175,14 +176,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.corvallisResources)
         {
             Toast.makeText(this,"Clicked Corvallis Resources", Toast.LENGTH_SHORT).show();
-            mViewPager.setCurrentItem(4);
+            mViewPager.setCurrentItem(5);
             navDrawer.closeDrawers();
 
         }
         if(id == R.id.about)
         {
             Toast.makeText(this,"Clicked About", Toast.LENGTH_SHORT).show();
-            mViewPager.setCurrentItem(5);
+            mViewPager.setCurrentItem(1);
             navDrawer.closeDrawers();
 
         }
