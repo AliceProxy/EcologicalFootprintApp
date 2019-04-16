@@ -113,11 +113,6 @@ public class FragmentQuestionRes extends Fragment {
         float eqfBuiltUpLand = resultSet.getFloat(17);
 
 
-        test = (TextView) view.findViewById(R.id.test);
-       // test.setText("Test: "+pCropland+"Test: "+cCarbon+"Test: "+eqfBuiltUpLand);
-
-
-
         float fs1 = ((MainActivity)getActivity()).questionaire.getQ1();
         float fs2 = ((MainActivity)getActivity()).questionaire.getQ2();
         float fs3 = ((MainActivity)getActivity()).questionaire.getQ3();
@@ -177,13 +172,16 @@ public class FragmentQuestionRes extends Fragment {
 
 
 
-        float finalScore = answer1 + answer2 + answer3 + answer4 + answer5 +
-                            answer6 + answer7 + answer8 + answer9 + answer10 +
-                            answer11 + answer12 + answer13 + answer14 + answer15;
+        float finalScore = (float)((answer1 + answer2 + answer3 + answer4 + answer5 +
+                                    answer6 + answer7 + answer8 + answer9 + answer10 +
+                                    answer11 + answer12 + answer13 + answer14 + answer15) * 0.25);
 
         score = (TextView) view.findViewById(R.id.score);
         DecimalFormat df = new DecimalFormat("0.00");
         score.setText("Your Score: "+df.format(finalScore));
+
+        test = (TextView) view.findViewById(R.id.test);
+        test.setText("The Ecological Footprint per person in the US is 8.6 global hectares (gha)");
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
