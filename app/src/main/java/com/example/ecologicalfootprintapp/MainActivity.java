@@ -66,8 +66,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.d(TAG, "questionaire completed: "+(questionaire.getCompleted()+""));
         Log.d(TAG, "questionaire completed");
 
-        FetchAPI();
-
     }
 
 
@@ -168,12 +166,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-    public void FetchAPI()
-    {
-        resultText = new TextView(this);
-        progressDiag = new ProgressDialog(this);
-        new ApiJson(progressDiag, resultText).execute("http://api.footprintnetwork.org/v1/data/177/2014");
-    }
 }
 
 
