@@ -12,13 +12,13 @@ Open android studio
 
 If this is the first time running Android Studio select Open Android Studio Project
 
-{     Navigate to the directory where you cloned the repository
+     Navigate to the directory where you cloned the repository
 
       Select the EcologicalFootprintApp folder
 
-}
+
 Else
-{
+
 
       Go to Android Studio -> File -> Open
 
@@ -27,7 +27,7 @@ Else
       Select the green icon that says  "EcologicalFootprintApp"
       
       Press OK
-}
+
 
 Press the green triangle run button on the top right of the window to start the app
 
@@ -45,6 +45,10 @@ Press the green run button to start the application
 
 
 
+UPDATE: 4/19/2019
+Added a test build APK. Have not discussed publishing rights for signed APK with client / if they want it published.
+
+To test apk, download the file on your android smartphone and tap the file once downloaded to install
 
 
 
