@@ -59,6 +59,8 @@ public class FragmentQuestionaire15 extends Fragment {
 
 
 
+
+
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerOptions);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         answerSpinner.setAdapter(spinnerAdapter);
