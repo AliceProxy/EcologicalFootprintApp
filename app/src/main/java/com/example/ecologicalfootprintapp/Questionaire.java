@@ -9,6 +9,7 @@ import com.example.ecologicalfootprintapp.data.Score;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -65,12 +66,27 @@ public class Questionaire
 
     public List<Score> getScores()
     {
-        return jManager.getScore();
+        List<Score> scores = new ArrayList<Score>();
+        try {
+            scores = jManager.getScore();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return scores;
     }
 
     public void addScore(double score)
     {
-        jManager.addScore(score);
+        List<Score> scores = new ArrayList<Score>();
+        try {
+            jManager.addScore(score);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
@@ -79,12 +95,12 @@ public class Questionaire
     // returns the completed status boolean
     public boolean getCompleted() { return jManager.getJson("Questionaire.json","Completed").equals("true"); }
 
-    public float getLandUseInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","LandUseInfluence")); }
-    public float getCarbonInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","CarbonInfluence")); }
-    public float getForestProductInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","ForestProductInfluence")); }
-    public float getLivestockInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","LivestockInfluence")); }
-    public float getCropLandInfluence() { return Float.parseFloat(jManager.getJson("Questionaire.json","CropLandInfluence")); }
-    public float getScore() { return Float.parseFloat(jManager.getJson("Questionaire.json","TotalScore")); }
+    public float getLandUseInfluence() { return tryParseFloat(jManager.getJson("Questionaire.json","LandUseInfluence")); }
+    public float getCarbonInfluence() { return tryParseFloat(jManager.getJson("Questionaire.json","CarbonInfluence")); }
+    public float getForestProductInfluence() { return tryParseFloat(jManager.getJson("Questionaire.json","ForestProductInfluence")); }
+    public float getLivestockInfluence() { return tryParseFloat(jManager.getJson("Questionaire.json","LivestockInfluence")); }
+    public float getCropLandInfluence() { return tryParseFloat(jManager.getJson("Questionaire.json","CropLandInfluence")); }
+    public float getScore() { return tryParseFloat(jManager.getJson("Questionaire.json","TotalScore")); }
 
     public void setScore(float val) { jManager.setJson("Questionaire.json", "TotalScore", ""+val); }
     public void setCropLand(float val) { jManager.setJson("Questionaire.json", "CropLandInfluence", ""+val); }
@@ -117,50 +133,72 @@ public class Questionaire
         return null;
     }
 
+    public int tryParse(String info)
+    {
+        try{
+            return Integer.parseInt(info);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public float tryParseFloat(String s)
+    {
+        try{
+            return Float.parseFloat(s);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return 0.0f;
+        }
+    }
+
     // returns an integer symbolizing the option selected for question 1
-    public int getQ1() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q1")); }
+    public int getQ1() { return tryParse(jManager.getJson("Questionaire.json","Q1")); }
 
     // returns an integer symbolizing the option selected for question 2
-    public int getQ2() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q2")); }
+    public int getQ2() { return tryParse(jManager.getJson("Questionaire.json","Q2")); }
 
     // returns an integer symbolizing the option selected for question 3
-    public int getQ3() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q3")); }
+    public int getQ3() { return tryParse(jManager.getJson("Questionaire.json","Q3")); }
 
     // returns an integer symbolizing the option selected for question 4
-    public int getQ4() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q4")); }
+    public int getQ4() { return tryParse(jManager.getJson("Questionaire.json","Q4")); }
 
     // returns an integer symbolizing the option selected for question 5
-    public int getQ5() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q5")); }
+    public int getQ5() { return tryParse(jManager.getJson("Questionaire.json","Q5")); }
 
     // returns an integer symbolizing the option selected for question 6
-    public int getQ6() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q6")); }
+    public int getQ6() { return tryParse(jManager.getJson("Questionaire.json","Q6")); }
 
     // returns an integer symbolizing the option selected for question 7
-    public int getQ7() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q7")); }
+    public int getQ7() { return tryParse(jManager.getJson("Questionaire.json","Q7")); }
 
     // returns an integer symbolizing the option selected for question 8
-    public int getQ8() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q8")); }
+    public int getQ8() { return tryParse(jManager.getJson("Questionaire.json","Q8")); }
 
     // returns an integer symbolizing the option selected for question 9
-    public int getQ9() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q9")); }
+    public int getQ9() { return tryParse(jManager.getJson("Questionaire.json","Q9")); }
 
     // returns an integer symbolizing the option selected for question 10
-    public int getQ10() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q10")); }
+    public int getQ10() { return tryParse(jManager.getJson("Questionaire.json","Q10")); }
 
     // returns an integer symbolizing the option selected for question 11
-    public int getQ11() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q11")); }
+    public int getQ11() { return tryParse(jManager.getJson("Questionaire.json","Q11")); }
 
     // returns an integer symbolizing the option selected for question 12
-    public int getQ12() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q12")); }
+    public int getQ12() { return tryParse(jManager.getJson("Questionaire.json","Q12")); }
 
     // returns an integer symbolizing the option selected for question 13
-    public int getQ13() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q13")); }
+    public int getQ13() { return tryParse(jManager.getJson("Questionaire.json","Q13")); }
 
     // returns an integer symbolizing the option selected for question 14
-    public int getQ14() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q14")); }
+    public int getQ14() { return tryParse(jManager.getJson("Questionaire.json","Q14")); }
 
     // returns an integer symbolizing the option selected for question 15
-    public int getQ15() { return Integer.parseInt(jManager.getJson("Questionaire.json","Q15")); }
+    public int getQ15() { return tryParse(jManager.getJson("Questionaire.json","Q15")); }
 
 
     public void setCompleted(boolean status) { jManager.setJson("Questionaire.json", "Completed", ""+status); }

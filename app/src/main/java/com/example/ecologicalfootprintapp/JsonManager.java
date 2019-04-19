@@ -52,6 +52,7 @@ public class JsonManager
             if(jArray != null)
                 return jArray.getJSONObject(0).getString(key);
             else {
+                Log.e("validating file", filename);
                 validateFile(filename, context);
                 return jArray.getJSONObject(0).getString(key);
             }
@@ -87,7 +88,8 @@ public class JsonManager
 
 
     public void addScore(double score) {
-        List<Score> scores = getScore();
+        List<Score> scores = new ArrayList<Score>();
+        scores = getScore();
         JSONArray jArray = JArrayFromFile("Questionaire.json", context);
         scores.add(new Score(""+score));
         try {
@@ -111,15 +113,15 @@ public class JsonManager
 
         List<Score> scores = new ArrayList<Score>();
         // getting a JSONArray for the contents of the specified file name
-        JSONArray jArray = JArrayFromFile("Questionaire.json", context);
         try {
+            JSONArray jArray = JArrayFromFile("Questionaire.json", context);
+
             String scoresObject = jArray.getJSONObject(1).getJSONArray("scores").toString();
             Log.e("getting scores string", scoresObject);
             Type scoreType = new TypeToken<ArrayList<Score>>(){}.getType();
             scores = new Gson().fromJson(scoresObject, scoreType);
 
-
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return scores;
